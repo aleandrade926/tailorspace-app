@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Building2, ArrowRight, ShieldCheck, Zap, PenTool } from 'lucide-react';
