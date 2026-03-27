@@ -90,6 +90,13 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer / Contact */}
+      <footer className="py-10 border-t border-white/10 text-center mt-12">
+        <p className="text-slate-500">
+          Dúvidas ou projetos Fit to Suit em grande escala? Fale conosco: <a href="mailto:comercial@tailorspace.com.br" className="text-brand-500 hover:text-brand-400 transition-colors">comercial@tailorspace.com.br</a>
+        </p>
+      </footer>
     </div>
   );
 }
@@ -137,6 +144,12 @@ function PricingPage() {
               Assinar Plano Investidor (Stripe)
             </button>
           </div>
+        </div>
+
+        {/* Contact Footer */}
+        <div className="mt-16 pb-8 text-center">
+          <p className="text-slate-500 mb-2">Precisa customizar um alto volume de ativos operacionais?</p>
+          <a href="mailto:comercial@tailorspace.com.br" className="text-brand-500 font-medium hover:text-brand-400 transition-colors">Fale com nossos especialistas: comercial@tailorspace.com.br</a>
         </div>
       </div>
     </div>
