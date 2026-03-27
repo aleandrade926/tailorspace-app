@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Building2, ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote } from 'lucide-react';
 
+import AuthPage from './pages/Auth';
+import DashboardPage from './pages/Dashboard';
+
 function LandingPage() {
   return (
     <div className="min-h-screen bg-dark-900 text-slate-100 selection:bg-brand-500 selection:text-white pb-20">
@@ -17,9 +20,9 @@ function LandingPage() {
             <a href="#how-it-works" className="hover:text-white transition-colors">Como Funciona</a>
             <Link to="/pricing" className="hover:text-white transition-colors text-brand-400">Planos e Monetização</Link>
           </div>
-          <a href="https://studios.tailorspace.com.br/geral" target="_blank" rel="noopener noreferrer" className="bg-white text-dark-900 px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-200 transition-colors">
-            Começar Agora
-          </a>
+          <Link to="/auth" className="bg-white text-dark-900 px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-200 transition-colors shadow-lg shadow-white/10">
+            Acessar Plataforma
+          </Link>
         </div>
       </nav>
 
@@ -46,10 +49,10 @@ function LandingPage() {
               Conectamos imóveis com alto potencial a empresas e pessoas que buscam espaços perfeitamente customizados. Reforma e mobília inclusas em uma única taxa mensal.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://studios.tailorspace.com.br/geral" className="w-full sm:w-auto px-8 py-4 bg-brand-500 text-white rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/25">
+              <Link to="/auth" className="w-full sm:w-auto px-8 py-4 bg-brand-500 text-white rounded-full font-bold flex items-center justify-center gap-2 hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/25">
                 Descubra Seu Espaço <ArrowRight className="w-4 h-4" />
-              </a>
-              <Link to="/pricing" className="w-full sm:w-auto px-8 py-4 glass text-white rounded-full font-semibold hover:bg-white/10 transition-all">
+              </Link>
+              <Link to="/pricing" className="w-full sm:w-auto px-8 py-4 glass text-white rounded-full font-bold hover:bg-white/10 transition-all">
                 Sou Investidor
               </Link>
             </div>
@@ -133,9 +136,9 @@ function LandingPage() {
           <p className="text-lg text-slate-300 mb-10">
             Seja você um Inquilino buscando o espaço perfeito ou um Proprietário com um imóvel parado gerando despesas.
           </p>
-          <a href="https://studios.tailorspace.com.br/geral" className="inline-flex px-10 py-5 bg-white text-dark-900 rounded-full font-bold text-lg hover:bg-slate-200 transition-colors shadow-xl shadow-white/10">
+          <Link to="/auth" className="inline-flex px-10 py-5 bg-white text-dark-900 rounded-full font-bold text-lg hover:bg-slate-200 transition-colors shadow-xl shadow-white/10">
             Começar Agora
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -214,6 +217,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </Router>
   );
