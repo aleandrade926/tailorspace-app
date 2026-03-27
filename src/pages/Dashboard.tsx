@@ -17,6 +17,10 @@ export default function DashboardPage() {
   const [rentPrice, setRentPrice] = useState('');
   const [fitOutBudget, setFitOutBudget] = useState('');
   const [status, setStatus] = useState('raw_contrapiso');
+  
+  // Imagem State
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   const fetchProperties = async (userId: string) => {
     const { data } = await supabase.from('properties').select('*').eq('owner_id', userId).order('created_at', { ascending: false });
@@ -55,6 +59,27 @@ export default function DashboardPage() {
     if (!user) return;
     
     setLoading(true);
+    let image_raw_url = null;
+
+    // 1. Upload da imagem (se existir)
+    if (imageFile) {
+      setUploadingImage(true);
+      const fileExt = imageFile.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const filePath = `${user.id}/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage.from('property_images').upload(filePath, imageFile);
+      
+      if (!uploadError) {
+        const { data: { publicUrl } } = supabase.storage.from('property_images').getPublicUrl(filePath);
+        image_raw_url = publicUrl;
+      } else {
+        alert("Erro ao fazer upload da imagem.");
+      }
+      setUploadingImage(false);
+    }
+
+    // 2. Salvar dados no banco
     const newProperty = {
       owner_id: user.id,
       title,
@@ -62,7 +87,8 @@ export default function DashboardPage() {
       description,
       rent_price: parseFloat(rentPrice),
       fit_out_budget: parseFloat(fitOutBudget) || 0,
-      status
+      status,
+      image_raw_url // Nova coluna da Fase 2
     };
 
     const { error } = await supabase.from('properties').insert([newProperty]);
@@ -70,7 +96,7 @@ export default function DashboardPage() {
     if (!error) {
       setIsAdding(false);
       // Reset Form
-      setTitle(''); setAddress(''); setDescription(''); setRentPrice(''); setFitOutBudget(''); setStatus('raw_contrapiso');
+      setTitle(''); setAddress(''); setDescription(''); setRentPrice(''); setFitOutBudget(''); setStatus('raw_contrapiso'); setImageFile(null);
       // Refresh List
       fetchProperties(user.id);
     } else {
@@ -162,10 +188,21 @@ export default function DashboardPage() {
                   <input type="number" min="0" value={fitOutBudget} onChange={e => setFitOutBudget(e.target.value)} className="w-full bg-dark-800 border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none transition-all" placeholder="O quanto você aceita abater/investir na marcenaria?" />
                 </div>
               </div>
+
+              <div className="pb-4">
+                <label className="block text-sm font-medium text-slate-300 mb-1 flex items-center gap-2"><Sparkles className="w-4 h-4 text-brand-400"/> Foto Real (Cru/Bagunçado)</label>
+                <p className="text-xs text-slate-500 mb-2">Faça o upload da foto do contrapiso ou da mobília antiga. Usaremos ela na nossa ferramenta Master Key para gerar a simulação com Inteligência Artificial depois!</p>
+                <input 
+                  type="file" 
+                  accept="image/*"
+                  onChange={e => e.target.files && setImageFile(e.target.files[0])} 
+                  className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-500 file:text-white hover:file:bg-brand-600 border border-slate-700 rounded-xl p-2 bg-dark-800 text-slate-300 cursor-pointer" 
+                />
+              </div>
               
               <div className="border-t border-slate-700 pt-6 flex justify-end">
-                <button type="submit" disabled={loading} className="bg-brand-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-600 transition-colors disabled:opacity-50">
-                  {loading ? 'Salvando...' : 'Publicar no Marketplace'}
+                <button type="submit" disabled={loading || uploadingImage} className="bg-brand-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-600 transition-colors disabled:opacity-50">
+                  {loading || uploadingImage ? 'Processando & Salvando...' : 'Publicar no Marketplace'}
                 </button>
               </div>
             </form>
@@ -188,13 +225,16 @@ export default function DashboardPage() {
               {properties.map(prop => (
                 <div key={prop.id} className="glass rounded-2xl overflow-hidden hover:border-brand-500/50 transition-colors flex flex-col h-full border border-white/10 group">
                   <div className="h-48 bg-dark-800 relative flex items-center justify-center overflow-hidden">
-                     {/* Imagem Placeholder com IA Theme */}
-                     <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity" />
+                     {/* Imagem Real do Storage ou Placeholder */}
+                     <div 
+                        className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity" 
+                        style={{ backgroundImage: `url('${prop.image_raw_url || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}')` }}
+                     />
                      <div className="absolute top-4 right-4 bg-brand-900 border border-brand-500 text-brand-400 text-xs font-bold px-3 py-1 rounded-full uppercase truncate max-w-[150px]">
                        {prop.status.replace('_', ' ')}
                      </div>
-                     <button className="absolute bottom-4 right-4 glass z-10 px-4 py-2 rounded-full text-xs font-bold text-white shadow-xl flex items-center gap-2 hover:bg-brand-500 transition-colors">
-                       <Sparkles className="w-3 h-3"/> Simular IA
+                     <button className="absolute bottom-4 right-4 glass z-10 px-4 py-2 rounded-full text-xs font-bold text-white shadow-xl flex items-center gap-2 hover:bg-brand-500 transition-colors backdrop-blur-md border border-white/20">
+                       <Sparkles className="w-3 h-3 text-brand-400"/> IA Render Inativo
                      </button>
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
