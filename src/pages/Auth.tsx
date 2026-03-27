@@ -7,21 +7,31 @@ import { motion } from 'framer-motion';
 export default function AuthPage() {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
-  const [role, setRole] = useState('tenant'); // tenant, owner, supplier, broker
+  const [role, setRole] = useState('tenant');
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setMessage('');
 
     try {
-      if (isLogin) {
+      if (isForgotPassword) {
+        const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin + '/auth',
+        });
+        if (resetError) throw resetError;
+        setMessage('Enviamos um link de recuperação para o seu e-mail! Verifique sua caixa de entrada.');
+        setIsForgotPassword(false);
+      } else if (isLogin) {
         const { error: signInError } = await supabase.auth.signInWithPassword({
           email,
           password
@@ -40,8 +50,6 @@ export default function AuthPage() {
           }
         });
         if (signUpError) throw signUpError;
-        // After signup, we log them in or tell them to check email
-        // Supabase has email confirmation enabled by default sometimes, but let's assume auto-login for now
         navigate('/dashboard');
       }
     } catch (err: any) {
@@ -64,10 +72,10 @@ export default function AuthPage() {
           <Building2 className="w-12 h-12 text-brand-500" />
         </motion.div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-          {isLogin ? 'Acesse o seu Portal' : 'Crie sua conta TailorSpace'}
+          {isForgotPassword ? 'Recuperar Senha' : isLogin ? 'Acesse o seu Portal' : 'Crie sua conta TailorSpace'}
         </h2>
         <p className="mt-2 text-center text-sm text-slate-400">
-          O principal hub de propriedades Fit-to-Suit do Brasil.
+          {isForgotPassword ? 'Digite seu e-mail corporativo abaixo para receber o link.' : 'O principal hub de propriedades Fit-to-Suit do Brasil.'}
         </p>
       </div>
 
@@ -80,20 +88,26 @@ export default function AuthPage() {
             </div>
           )}
 
+          {message && (
+            <div className="mb-4 bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 px-4 py-3 rounded-xl text-sm">
+              {message}
+            </div>
+          )}
+
           <form className="space-y-6" onSubmit={handleAuth}>
-            {!isLogin && (
+            {!isLogin && !isForgotPassword && (
               <>
                 <div>
                   <label className="block text-sm font-medium text-slate-300">Nome Completo</label>
                   <div className="mt-1 relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                    <input type="text" required value={fullName} onChange={(e) => setFullName(e.target.value)} className="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl bg-dark-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:text-sm transition-all" placeholder="Alexandre Santos" />
+                    <input type="text" required value={fullName} onChange={(e) => setFullName(e.target.value)} className="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl bg-dark-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm" placeholder="Alexandre Santos" />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300">Meu Perfil</label>
-                  <select value={role} onChange={(e) => setRole(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-3 border border-slate-700 bg-dark-800 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:text-sm">
+                  <select value={role} onChange={(e) => setRole(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-3 border border-slate-700 bg-dark-800 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm">
                     <option value="tenant">Buscar um Imóvel Customizado (Inquilino)</option>
                     <option value="owner">Tenho Imóvel para FTS (Proprietário)</option>
                     <option value="supplier">Sou Fornecedor (Móveis/Obras)</option>
@@ -107,29 +121,44 @@ export default function AuthPage() {
               <label className="block text-sm font-medium text-slate-300">E-mail Corporativo ou Pessoal</label>
               <div className="mt-1 relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl bg-dark-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm transition-all" placeholder="exemplo@empresa.com.br" />
+                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl bg-dark-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm" placeholder="exemplo@empresa.com.br" />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-300">Senha Segura</label>
-              <div className="mt-1 relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl bg-dark-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm transition-all" placeholder="••••••••" />
+            {!isForgotPassword && (
+              <div>
+                <div className="flex justify-between items-center">
+                  <label className="block text-sm font-medium text-slate-300">Senha Segura</label>
+                  {isLogin && (
+                    <button type="button" onClick={() => setIsForgotPassword(true)} className="text-xs font-medium text-brand-400 hover:text-brand-300 transition-colors">
+                      Esqueceu a senha?
+                    </button>
+                  )}
+                </div>
+                <div className="mt-1 relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                  <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="appearance-none block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-xl bg-dark-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm" placeholder="••••••••" />
+                </div>
               </div>
-            </div>
+            )}
 
             <div>
-              <button type="submit" disabled={loading} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 focus:ring-offset-dark-900 disabled:opacity-50 transition-all">
-                {loading ? 'Processando...' : isLogin ? 'Entrar na Plataforma' : 'Criar Conta Gratuita'}
+              <button type="submit" disabled={loading} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 disabled:opacity-50 transition-all">
+                {loading ? 'Processando...' : isForgotPassword ? 'Enviar Link de Recuperação' : isLogin ? 'Entrar na Plataforma' : 'Criar Conta Gratuita'}
               </button>
             </div>
           </form>
 
-          <div className="mt-6 text-center">
-            <button type="button" onClick={() => setIsLogin(!isLogin)} className="text-sm font-medium text-brand-400 hover:text-brand-300 transition-colors">
-              {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já possui conta? Faça login'}
-            </button>
+          <div className="mt-6 text-center space-y-2">
+            {isForgotPassword ? (
+              <button type="button" onClick={() => setIsForgotPassword(false)} className="text-sm font-medium text-brand-400 hover:text-brand-300 transition-colors">
+                Lembrou a senha? Voltar para o Login
+              </button>
+            ) : (
+              <button type="button" onClick={() => setIsLogin(!isLogin)} className="text-sm font-medium text-brand-400 hover:text-brand-300 transition-colors">
+                {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já possui conta? Faça login'}
+              </button>
+            )}
           </div>
         </div>
       </motion.div>
