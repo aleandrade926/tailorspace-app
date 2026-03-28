@@ -37,7 +37,7 @@ function LandingPage() {
             transition={{ duration: 0.8 }}
           >
             <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 text-sm font-medium mb-6">
-              O 1º Marketplace de Fit to Suit (FTS) do Brasil
+              O 1º Marketplace de Fit-out, Mobília e Build-to-Suit do Brasil
             </span>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
               Não alugue o que existe.<br />
@@ -46,7 +46,7 @@ function LandingPage() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Conectamos imóveis com alto potencial a empresas e pessoas que buscam espaços perfeitamente customizados. Reforma e mobília inclusas em uma única taxa mensal.
+              Seu Studio ou Escritório mobiliado como você sempre sonhou, sem gastar com obra. Conectamos imóveis em contrapiso e retrofits vazios a moradores e startups. Reforma e mobília diluídas no seu aluguel.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/auth" className="w-full sm:w-auto px-8 py-4 bg-brand-500 text-white rounded-full font-bold flex items-center justify-center gap-2 hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/25">
@@ -70,22 +70,22 @@ function LandingPage() {
           
           <div className="space-y-6 text-lg text-slate-300 leading-relaxed font-light">
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              O mercado imobiliário de alto padrão parou no tempo porque opera em duas metades que não se comunicam. De um lado, a corretagem tenta empurrar imóveis crus, no contrapiso ou com plantas desatualizadas que não refletem o estilo de vida do cliente. Do outro, a indústria das remodelações projeta espaços incríveis, mas exige a descapitalização imediata e brutal de quem vai morar.
+              O mercado imobiliário brasileiro está travado. De um lado, proprietários e investidores compraram Studios e Apartamentos na planta para alugar no QuintoAndar ou Airbnb, mas a chave chegou e eles não têm mais liquidez para a obra, piso, planejados e mobília. O imóvel entra pro buraco negro gerando despesas pesadas de condomínio.
             </motion.p>
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-              O mercado força uma escolha injusta: ou aceita o genérico, ou esgota a sua liquidez para adequar um imóvel que não é seu.
+              Do outro lado, moradores e empresas em crescimento querem entrar no espaço com a mala pronta e com tudo lindo, mas sem precisar derreter o próprio patrimônio comprando mobília e sofrendo com marcenaria para um imóvel que nem é deles.
             </motion.p>
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-white font-medium border-l-4 border-brand-500 pl-6 py-2 my-8 glass rounded-r-xl">
-              A TailorSpace nasceu para fundir estes dois mundos. Não somos uma imobiliária tradicional, nem uma simples construtora. Somos a primeira Operadora de Fit to Suit (FTS) Residencial e Corporativa do Brasil.
+              A TailorSpace nasceu para curar essa dor bilionária. Somos a ponte inteligente que une o Imóvel Vazio à Demanda Aquecida, usando o modelo "Fit-out As A Service".
             </motion.p>
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-              A nossa engenharia atua exatamente no vácuo entre a corretagem e a execução (o fit-out), usando a própria procura de locação para financiar e viabilizar a adequação completa do espaço, num único contrato blindado.
+              Seja por financiamento via fintech parceira ou investidores imobiliários ávidos por rentabilidade, nós usamos a garantia da própria locação para viabilizar 100% da mobília e obra do Studio cru ou retrofit. 
             </motion.p>
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-              Nós transformamos a carência do arrendamento em espaços personalizados e hipervalorização dos ativos. Para o inquilino, entregamos um lar de primeira classe desenhado com a sua identidade, sem colocar a mão no bolso para a obra; tudo é resolvido numa mensalidade premium. Para o proprietário, curamos a dor do imóvel parado ao injetar capital e infraestrutura de luxo no seu espaço, a custo zero.
+              Para o inquilino (Pessoa ou PJ), entregamos a conveniência de um espaço pronto e hipercustomizado pagando apenas a assinatura do aluguel. Para o proprietário, injetamos capital e vida no ativo sem custo antecipado, transformando prejuízo em altíssima rentabilidade passiva.
             </motion.p>
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }} className="text-brand-400 font-medium text-xl pt-4">
-              Nós não arrendamos o que já existe; desenhamos o encaixe perfeito e entregamos a chave.
+              Nós não alugamos o que já existe; desenhamos o encaixe perfeito e entregamos a chave.
             </motion.p>
           </div>
         </div>
@@ -171,29 +171,29 @@ function PricingPage() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Tenant Plan */}
           <div className="glass p-8 md:p-10 rounded-3xl relative overflow-hidden border-white/10 flex flex-col">
-            <h3 className="text-2xl font-bold mb-2">Empresas (Locatários)</h3>
-            <p className="text-slate-400 mb-6 flex-1">Para corporações estruturando sua nova sede sob medida sem descapitalizar o core business.</p>
-            <div className="text-5xl font-bold mb-8">R$ 499<span className="text-lg text-slate-500 font-normal">/mês</span></div>
+            <h3 className="text-2xl font-bold mb-2">Moradores & Startups</h3>
+            <p className="text-slate-400 mb-6 flex-1">Para pessoas físicas ou startups que buscam alugar um espaço perfeito, já com mobília e reforma inclusas.</p>
+            <div className="text-5xl font-bold mb-8">R$ 197<span className="text-lg text-slate-500 font-normal">/mês</span></div>
             <ul className="space-y-4 mb-10">
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Publicação de até 3 projetos Fit to Suit</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Assessoria jurídica e contratual</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Match direto com +500 investidores</li>
+              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Acesse centenas de Studios e Salas cruas</li>
+              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Peça a mobília/reforma na plataforma</li>
+              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Pague o Fit-out diluído na mensalidade</li>
             </ul>
             <a href={import.meta.env.VITE_HOTMART_TENANT_URL || '#'} target="_blank" rel="noopener noreferrer" className="block text-center w-full py-4 glass text-white rounded-xl font-semibold hover:bg-white/10 transition-colors">
-              Assinar Plano Empresa via Hotmart
+              Assinar Plano Locatário via Hotmart
             </a>
           </div>
 
           {/* Investor Plan */}
           <div className="glass p-8 md:p-10 rounded-3xl relative overflow-hidden ring-2 ring-brand-500 flex flex-col shadow-2xl shadow-brand-500/20">
             <div className="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl uppercase tracking-wider">Premium</div>
-            <h3 className="text-2xl font-bold mb-2">Investidores & Fundos</h3>
-            <p className="text-slate-400 mb-6 flex-1">Acesso prime aos melhores ativos imobiliários e oportunidades Triple A do mercado.</p>
+            <h3 className="text-2xl font-bold mb-2">Investidores (Mobília & Corporate)</h3>
+            <p className="text-slate-400 mb-6 flex-1">Financie o "Fit-out" de Studios vazios para Airbnb ou monte projetos corporativos BTS em troca de alta rentabilidade.</p>
             <div className="text-5xl font-bold mb-8">R$ 1.990<span className="text-lg text-slate-500 font-normal">/mês</span></div>
             <ul className="space-y-4 mb-10">
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Deal Flow ilimitado na plataforma</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Deal origination customizado</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Prioridade no bid de leilões FTS</li>
+              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Acesso a Studios de donos sem liquidez</li>
+              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Crie carteiras de rendimento com Mobília</li>
+              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Prioridade de Originação Corporate (FTS)</li>
             </ul>
             <a href={import.meta.env.VITE_HOTMART_INVESTOR_URL || '#'} target="_blank" rel="noopener noreferrer" className="block text-center w-full py-4 bg-brand-500 text-white rounded-xl font-semibold hover:bg-brand-600 shadow-lg shadow-brand-500/25 transition-all text-lg">
               Assinar Plano Investidor via Hotmart
