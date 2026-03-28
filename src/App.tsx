@@ -179,9 +179,9 @@ function PricingPage() {
               <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Assessoria jurídica e contratual</li>
               <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Match direto com +500 investidores</li>
             </ul>
-            <button className="w-full py-4 glass text-white rounded-xl font-semibold hover:bg-white/10 transition-colors">
-              Pagar com Hotmart/Stripe
-            </button>
+            <a href={import.meta.env.VITE_HOTMART_TENANT_URL || '#'} target="_blank" rel="noopener noreferrer" className="block text-center w-full py-4 glass text-white rounded-xl font-semibold hover:bg-white/10 transition-colors">
+              Assinar Plano Empresa via Hotmart
+            </a>
           </div>
 
           {/* Investor Plan */}
@@ -195,9 +195,9 @@ function PricingPage() {
               <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Deal origination customizado</li>
               <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Prioridade no bid de leilões FTS</li>
             </ul>
-            <button className="w-full py-4 bg-brand-500 text-white rounded-xl font-semibold hover:bg-brand-600 shadow-lg shadow-brand-500/25 transition-all text-lg">
-              Assinar Plano Investidor
-            </button>
+            <a href={import.meta.env.VITE_HOTMART_INVESTOR_URL || '#'} target="_blank" rel="noopener noreferrer" className="block text-center w-full py-4 bg-brand-500 text-white rounded-xl font-semibold hover:bg-brand-600 shadow-lg shadow-brand-500/25 transition-all text-lg">
+              Assinar Plano Investidor via Hotmart
+            </a>
           </div>
         </div>
 
