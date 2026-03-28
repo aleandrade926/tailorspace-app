@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Building2, User, Plus, Home, Sparkles, MapPin, Handshake, Sofa, ShoppingBag, Banknote } from 'lucide-react';
+import { LogOut, Building2, User, Plus, Home, Sparkles, Handshake, Sofa, ShoppingBag, Banknote, Lock } from 'lucide-react';
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -10,6 +10,7 @@ export default function DashboardPage() {
   
   // Navigation State (Imóveis vs Mobília)
   const [activeTab, setActiveTab] = useState<'properties' | 'furniture'>('properties');
+  const [subscriptionPlan, setSubscriptionPlan] = useState('free');
 
   // --- Real Estate States ---
   const [properties, setProperties] = useState<any[]>([]);
@@ -23,7 +24,7 @@ export default function DashboardPage() {
   const [propStatus, setPropStatus] = useState('raw_contrapiso');
 
   // --- Furniture States ---
-  const [furnitures, setFurnitures] = useState<any[]>([]);
+  const [_furnitures, setFurnitures] = useState<any[]>([]);
   const [marketFurnitures, setMarketFurnitures] = useState<any[]>([]);
   const [isAddingFurniture, setIsAddingFurniture] = useState(false);
   const [furnTitle, setFurnTitle] = useState('');
@@ -54,7 +55,11 @@ export default function DashboardPage() {
     if (data) setMarketFurnitures(data);
   };
 
-  const loadAllData = (sessionUser: any) => {
+  const loadAllData = async (sessionUser: any) => {
+    // Buscar plano de assinatura
+    const { data: profile } = await supabase.from('users').select('subscription_plan').eq('id', sessionUser.id).single();
+    if (profile) setSubscriptionPlan(profile.subscription_plan || 'free');
+
     const r = sessionUser.user_metadata?.role;
     if (r === 'owner' || r === 'broker') {
       fetchOwnerProperties(sessionUser.id);
@@ -221,7 +226,7 @@ export default function DashboardPage() {
             
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Home className="text-brand-500"/> {isOwner ? 'Meus Ativos Imobiliários' : 'Marketplace de Lajes'}</h2>
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {(isOwner ? properties : marketProperties).map(prop => <PropertyCard key={prop.id} prop={prop} isOwner={isOwner} onInterest={handlePropertyInterest} />)}
+              {(isOwner ? properties : marketProperties).map(prop => <PropertyCard key={prop.id} prop={prop} isOwner={isOwner} onInterest={handlePropertyInterest} plan={subscriptionPlan} />)}
             </div>
             {(isOwner ? properties : marketProperties).length === 0 && <p className="text-slate-500">Nenhum imóvel disponível aqui no momento.</p>}
           </div>
@@ -247,7 +252,7 @@ export default function DashboardPage() {
             
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><ShoppingBag className="text-indigo-500"/> Peças Avulsas do Ecossistema</h2>
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-              {marketFurnitures.map(furn => <FurnitureCard key={furn.id} furn={furn} isOwner={furn.supplier_id === user.id} onInterest={handleFurnitureInterest} />)}
+              {marketFurnitures.map(furn => <FurnitureCard key={furn.id} furn={furn} isOwner={furn.supplier_id === user.id} onInterest={handleFurnitureInterest} plan={subscriptionPlan} />)}
             </div>
             {marketFurnitures.length === 0 && <p className="text-slate-500">Ainda não há móveis de terceiros disponíveis para anexar em locações.</p>}
           </div>
@@ -258,21 +263,29 @@ export default function DashboardPage() {
 }
 
 // Subcomponente Real Estate
-function PropertyCard({ prop, isOwner, onInterest }: { prop: any, isOwner: boolean, onInterest: (id: string) => void }) {
+function PropertyCard({ prop, isOwner, onInterest, plan }: { prop: any, isOwner: boolean, onInterest: (id: string) => void, plan?: string }) {
+  const isFree = plan === 'free';
   return (
-    <div className="glass rounded-2xl overflow-hidden hover:border-brand-500/50 flex flex-col border border-white/10 group bg-dark-800">
+    <div className="glass rounded-2xl overflow-hidden hover:border-brand-500/50 flex flex-col border border-white/10 group bg-dark-800 relative">
       <div className="h-48 bg-dark-900 relative"><div className="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" style={{ backgroundImage: `url('${prop.image_raw_url}')` }}/><div className="absolute inset-0 bg-gradient-to-t from-dark-900 opacity-90" /><div className="absolute top-4 right-4 bg-brand-500 text-xs font-bold px-3 py-1 rounded-full">{prop.status}</div></div>
       <div className="p-5 relative z-10 flex-1 flex flex-col">
         <h3 className="font-bold text-lg line-clamp-1">{prop.title}</h3>
-        <Flex justify="between" className="mt-4 border-t border-white/10 pt-4"><div className="text-brand-400 font-bold text-xl">R$ {prop.rent_price}</div><div className="text-emerald-400 font-bold text-sm">+ Orçamento Libre</div></Flex>
-        {!isOwner && <button onClick={() => onInterest(prop.id)} className="w-full mt-4 bg-white text-dark-900 py-2 rounded-xl font-bold flex justify-center gap-2"><Handshake className="w-4 h-4"/> Quero FTS Neste Imóvel!</button>}
+        <Flex justify="between" className="mt-4 border-t border-white/10 pt-4"><div className="text-brand-400 font-bold text-xl">R$ {prop.rent_price}</div><div className="text-emerald-400 font-bold text-sm">+ Orçamento Livre</div></Flex>
+        {!isOwner && (
+          isFree ? (
+            <a href="/pricing" className="w-full mt-4 bg-white/10 text-slate-300 py-2 rounded-xl font-bold flex justify-center items-center gap-2 hover:bg-white/20 transition-all"><Lock className="w-4 h-4"/> Upgrade para Match</a>
+          ) : (
+            <button onClick={() => onInterest(prop.id)} className="w-full mt-4 bg-white text-dark-900 py-2 rounded-xl font-bold flex justify-center gap-2 hover:bg-slate-200 transition-all"><Handshake className="w-4 h-4"/> Quero FTS Neste Imóvel!</button>
+          )
+        )}
       </div>
     </div>
   );
 }
 
 // Subcomponente Furniture
-function FurnitureCard({ furn, isOwner, onInterest }: { furn: any, isOwner: boolean, onInterest: (id: string) => void }) {
+function FurnitureCard({ furn, isOwner, onInterest, plan }: { furn: any, isOwner: boolean, onInterest: (id: string) => void, plan?: string }) {
+  const isFree = plan === 'free';
   return (
     <div className="glass rounded-2xl overflow-hidden shadow-2xl hover:border-indigo-500/50 flex flex-col border border-indigo-500/10 group bg-dark-800">
       <div className="h-48 bg-dark-900 relative"><div className="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" style={{ backgroundImage: `url('${furn.image_raw_url}')` }}/><div className="absolute top-4 left-4 bg-indigo-900 border border-indigo-500 text-indigo-300 text-[10px] font-bold px-2 py-0.5 rounded-full">{furn.condition}</div></div>
@@ -283,7 +296,13 @@ function FurnitureCard({ furn, isOwner, onInterest }: { furn: any, isOwner: bool
             <div className="text-[10px] text-slate-500 leading-tight">Valor Equivalente<br/>p/ Carência:</div>
             <div className="text-indigo-400 font-bold text-lg"><Banknote className="w-4 h-4 inline mr-1 opacity-70"/>{furn.full_price}</div>
         </Flex>
-        {!isOwner && <button onClick={() => onInterest(furn.id)} className="w-full mt-3 bg-indigo-500/20 hover:bg-indigo-500 hover:text-white text-indigo-300 border border-indigo-500/50 py-2 rounded-lg text-sm font-bold transition-all">Demonstrar Interesse</button>}
+        {!isOwner && (
+          isFree ? (
+            <a href="/pricing" className="w-full mt-3 bg-indigo-500/10 hover:bg-indigo-500/30 text-indigo-300/50 border border-indigo-500/20 py-2 rounded-lg text-sm font-bold flex justify-center items-center gap-2 transition-all"><Lock className="w-3 h-3"/> Plano Premium</a>
+          ) : (
+            <button onClick={() => onInterest(furn.id)} className="w-full mt-3 bg-indigo-500/20 hover:bg-indigo-500 hover:text-white text-indigo-300 border border-indigo-500/50 py-2 rounded-lg text-sm font-bold transition-all">Demonstrar Interesse</button>
+          )
+        )}
       </div>
     </div>
   );
