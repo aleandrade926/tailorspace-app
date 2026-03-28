@@ -1,70 +1,89 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Building2, User, Plus, Home, Sparkles, MapPin, Handshake } from 'lucide-react';
+import { LogOut, Building2, User, Plus, Home, Sparkles, MapPin, Handshake, Sofa, ShoppingBag, Banknote } from 'lucide-react';
 
 export default function DashboardPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   
-  // States do Proprietario
-  const [properties, setProperties] = useState<any[]>([]);
-  const [isAdding, setIsAdding] = useState(false);
-  
-  // States do Inquilino (A Vitrine)
-  const [marketProperties, setMarketProperties] = useState<any[]>([]);
+  // Navigation State (Imóveis vs Mobília)
+  const [activeTab, setActiveTab] = useState<'properties' | 'furniture'>('properties');
 
-  // Form State
-  const [title, setTitle] = useState('');
-  const [address, setAddress] = useState('');
-  const [description, setDescription] = useState('');
-  const [rentPrice, setRentPrice] = useState('');
-  const [fitOutBudget, setFitOutBudget] = useState('');
-  const [status, setStatus] = useState('raw_contrapiso');
+  // --- Real Estate States ---
+  const [properties, setProperties] = useState<any[]>([]);
+  const [marketProperties, setMarketProperties] = useState<any[]>([]);
+  const [isAddingProperty, setIsAddingProperty] = useState(false);
+  const [propTitle, setPropTitle] = useState('');
+  const [propAddress, setPropAddress] = useState('');
+  const [propDesc, setPropDesc] = useState('');
+  const [propRent, setPropRent] = useState('');
+  const [propBudget, setPropBudget] = useState('');
+  const [propStatus, setPropStatus] = useState('raw_contrapiso');
+
+  // --- Furniture States ---
+  const [furnitures, setFurnitures] = useState<any[]>([]);
+  const [marketFurnitures, setMarketFurnitures] = useState<any[]>([]);
+  const [isAddingFurniture, setIsAddingFurniture] = useState(false);
+  const [furnTitle, setFurnTitle] = useState('');
+  const [furnDesc, setFurnDesc] = useState('');
+  const [furnCondition, setFurnCondition] = useState('used');
+  const [furnPrice, setFurnPrice] = useState('');
+
+  // Common File State
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
 
-  // Fetch functions
+  // --- Fetchers ---
   const fetchOwnerProperties = async (userId: string) => {
     const { data } = await supabase.from('properties').select('*').eq('owner_id', userId).order('created_at', { ascending: false });
     if (data) setProperties(data);
   };
-
   const fetchMarketProperties = async () => {
     const { data } = await supabase.from('properties').select('*').order('created_at', { ascending: false });
     if (data) setMarketProperties(data);
   };
+  
+  const fetchOwnerFurnitures = async (userId: string) => {
+    const { data } = await supabase.from('furniture').select('*').eq('supplier_id', userId).order('created_at', { ascending: false });
+    if (data) setFurnitures(data);
+  };
+  const fetchMarketFurnitures = async () => {
+    const { data } = await supabase.from('furniture').select('*').order('created_at', { ascending: false });
+    if (data) setMarketFurnitures(data);
+  };
+
+  const loadAllData = (sessionUser: any) => {
+    const r = sessionUser.user_metadata?.role;
+    if (r === 'owner' || r === 'broker') {
+      fetchOwnerProperties(sessionUser.id);
+      fetchMarketFurnitures(); // Donos de imóveis veem vitrine de moveis!
+    } else if (r === 'tenant') {
+      fetchMarketProperties();
+      fetchMarketFurnitures(); 
+    } else if (r === 'supplier') {
+      fetchOwnerFurnitures(sessionUser.id);
+      fetchMarketProperties();
+    } else {
+      fetchOwnerProperties(sessionUser.id);
+      fetchOwnerFurnitures(sessionUser.id);
+      fetchMarketProperties();
+      fetchMarketFurnitures();
+    }
+  };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        navigate('/auth');
-      } else {
-        setUser(session.user);
-        const userRole = session.user.user_metadata?.role;
-        if (userRole === 'owner' || userRole === 'broker') {
-          fetchOwnerProperties(session.user.id);
-        } else {
-          fetchMarketProperties();
-        }
-      }
+      if (!session) { navigate('/auth'); } 
+      else { setUser(session.user); loadAllData(session.user); }
       setLoading(false);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!session) navigate('/auth');
-      else {
-        setUser(session.user);
-        const userRole = session.user.user_metadata?.role;
-        if (userRole === 'owner' || userRole === 'broker') {
-          fetchOwnerProperties(session.user.id);
-        } else {
-          fetchMarketProperties();
-        }
-      }
+      else { setUser(session.user); loadAllData(session.user); }
     });
-
     return () => subscription.unsubscribe();
   }, [navigate]);
 
@@ -73,93 +92,89 @@ export default function DashboardPage() {
     navigate('/');
   };
 
-  const handleAddProperty = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!user) return;
+  const uploadImageToBucket = async (): Promise<string | null> => {
+    if (!imageFile || !user) return null;
+    setUploadingImage(true);
+    const fileExt = imageFile.name.split('.').pop();
+    const filePath = `${user.id}/${Math.random()}.${fileExt}`;
+    const { error: uploadError } = await supabase.storage.from('property_images').upload(filePath, imageFile); // Usando o mesmo bucket pra Movel
+    setUploadingImage(false);
     
-    setLoading(true);
-    let image_raw_url = null;
-
-    if (imageFile) {
-      setUploadingImage(true);
-      const fileExt = imageFile.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `${user.id}/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage.from('property_images').upload(filePath, imageFile);
-      
-      if (!uploadError) {
-        const { data: { publicUrl } } = supabase.storage.from('property_images').getPublicUrl(filePath);
-        image_raw_url = publicUrl;
-      }
-      setUploadingImage(false);
+    if (!uploadError) {
+      const { data: { publicUrl } } = supabase.storage.from('property_images').getPublicUrl(filePath);
+      return publicUrl;
     }
+    alert("Erro ao enviar a imagem.");
+    return null;
+  };
 
-    const newProperty = {
-      owner_id: user.id,
-      title,
-      address,
-      description,
-      rent_price: parseFloat(rentPrice),
-      fit_out_budget: parseFloat(fitOutBudget) || 0,
-      status,
-      image_raw_url
-    };
-
-    const { error } = await supabase.from('properties').insert([newProperty]);
+  // --- Handlers Property ---
+  const handleAddProperty = async (e: React.FormEvent) => {
+    e.preventDefault(); if (!user) return; setLoading(true);
+    const image_raw_url = await uploadImageToBucket();
+    const obj = { owner_id: user.id, title: propTitle, address: propAddress, description: propDesc, rent_price: parseFloat(propRent), fit_out_budget: parseFloat(propBudget) || 0, status: propStatus, image_raw_url };
+    const { error } = await supabase.from('properties').insert([obj]);
     
     if (!error) {
-      setIsAdding(false);
-      setTitle(''); setAddress(''); setDescription(''); setRentPrice(''); setFitOutBudget(''); setStatus('raw_contrapiso'); setImageFile(null);
+      setIsAddingProperty(false);
+      setPropTitle(''); setPropAddress(''); setPropDesc(''); setPropRent(''); setPropBudget(''); setPropStatus('raw_contrapiso'); setImageFile(null);
       fetchOwnerProperties(user.id);
-    } else {
-      alert("Erro ao salvar imóvel: " + error.message);
-    }
+    } else alert("Erro: " + error.message);
     setLoading(false);
   };
 
-  const handleInterest = async (propertyId: string) => {
-    const confirmation = window.confirm("Você tem interesse neste imóvel? Se confirmar, a TailorSpace será notificada para criar uma simulação FTS exclusiva para você com o proprietário!");
-    if (!confirmation) return;
-
-    const match = {
-      property_id: propertyId,
-      tenant_id: user.id,
-      status: 'negotiating'
-    };
-
-    const { error } = await supabase.from('matches_contracts').insert([match]);
-    
-    if (!error) {
-      alert("🎉 Genial! O seu interesse (Match) foi registrado! Nossa equipe entrará em contato rápido para montarmos o projeto da mobília.");
-    } else {
-      alert("Ocorreu um erro ao enviar interesse: " + error.message);
-    }
+  const handlePropertyInterest = async (id: string) => {
+    if (!window.confirm("Confirmar interesse na Laje/Imóvel para FTS?")) return;
+    const { error } = await supabase.from('matches_contracts').insert([{ property_id: id, tenant_id: user.id, status: 'negotiating' }]);
+    if (!error) alert("Lead Imobiliário (Match) Gravado com Sucesso!");
   };
 
-  if (loading && !user) {
-    return <div className="min-h-screen bg-dark-900 flex items-center justify-center text-brand-500">Carregando painel...</div>;
-  }
+  // --- Handlers Furniture ---
+  const handleAddFurniture = async (e: React.FormEvent) => {
+    e.preventDefault(); if (!user) return; setLoading(true);
+    const image_raw_url = await uploadImageToBucket();
+    const obj = { supplier_id: user.id, title: furnTitle, description: furnDesc, condition: furnCondition, full_price: parseFloat(furnPrice), image_raw_url };
+    const { error } = await supabase.from('furniture').insert([obj]);
+    
+    if (!error) {
+      setIsAddingFurniture(false);
+      setFurnTitle(''); setFurnDesc(''); setFurnCondition('used'); setFurnPrice(''); setImageFile(null);
+      fetchOwnerFurnitures(user.id);
+    } else alert("Erro: " + error.message);
+    setLoading(false);
+  };
 
-  const role: string = user?.user_metadata?.role || 'tenant';
-  const isOwnerOrBroker = role === 'owner' || role === 'broker';
+  const handleFurnitureInterest = async (id: string) => {
+    if (!window.confirm("Gerar interesse técnico parar incluir este Móvel no FTS/Carência do seu pacote?")) return;
+    const { error } = await supabase.from('furniture_interests').insert([{ furniture_id: id, interested_user_id: user.id }]);
+    if (!error) alert("Lead de Mobília Gravado! A TailorSpace vai costurar isso no contrato de comodato/carência!");
+    else alert("Algo falhou: " + error.message);
+  };
+
+
+  if (loading && !user) return <div className="min-h-screen bg-dark-900 flex items-center justify-center text-brand-500">Carregando painel...</div>;
+
+  const role = user?.user_metadata?.role || 'tenant';
+  const isOwner = role === 'owner' || role === 'broker';
 
   return (
     <div className="min-h-screen bg-dark-900 text-slate-100 pb-20">
       <nav className="glass border-b border-white/10 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
         <div className="flex items-center gap-2">
           <Building2 className="w-6 h-6 text-brand-500" />
-          <span className="font-bold text-lg hidden sm:inline">TailorSpace Dashboard</span>
+          <span className="font-bold text-lg hidden sm:inline">TailorSpace FTS Hub</span>
         </div>
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
+          <div className="flex bg-dark-800 rounded-full p-1 border border-white/5 shadow-inner">
+            <button onClick={() => setActiveTab('properties')} className={`px-4 py-1.5 rounded-full text-sm font-bold transition-all ${activeTab === 'properties' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}>🏢 Real Estate</button>
+            <button onClick={() => setActiveTab('furniture')} className={`px-4 py-1.5 rounded-full text-sm font-bold transition-all ${activeTab === 'furniture' ? 'bg-indigo-500 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}>🛋️ Galeria de Móveis</button>
+          </div>
+          <div className="flex items-center gap-2 text-slate-400 text-sm border-l border-white/10 pl-6 hidden md:flex">
             <User className="w-4 h-4" />
-            <span className="hidden sm:inline">{user?.user_metadata?.full_name || user?.email}</span>
+            <span>{user?.user_metadata?.full_name || user?.email}</span>
             <span className="bg-brand-500/20 text-brand-400 font-bold px-2 py-0.5 rounded text-xs uppercase ml-2">{role}</span>
           </div>
-          <button onClick={handleLogout} className="flex items-center gap-2 text-slate-400 hover:text-red-400 transition-colors text-sm font-medium">
-            <LogOut className="w-4 h-4" /> Sair
-          </button>
+          <button onClick={handleLogout} className="flex items-center gap-2 text-slate-400 hover:text-red-400 transition-colors text-sm font-medium"><LogOut className="w-4 h-4" /> Sair</button>
         </div>
       </nav>
 
@@ -167,165 +182,111 @@ export default function DashboardPage() {
         <header className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
           <div>
             <h1 className="text-3xl font-bold mb-2">Painel de Negócios, {user?.user_metadata?.full_name?.split(' ')[0]}!</h1>
-            {isOwnerOrBroker ? (
-              <p className="text-slate-400">Gerencie seus ativos, locações e orçamentos do Fit-to-Suit.</p>
+            {activeTab === 'properties' ? (
+                <p className="text-slate-400">Hub do Mercado Imobiliário. Publique lajes cruas e conquiste seu Fit-to-Suit.</p>
             ) : (
-              <p className="text-brand-400 font-medium text-lg">Escolha uma laje crua. Nós entregamos mobiliada. Zero dor de cabeça.</p>
+                <p className="text-indigo-300">Mercado de Ativos Físicos. Use Peças como Moeda de Troca, Carência ou Comodato.</p>
             )}
           </div>
           
-          {isOwnerOrBroker && !isAdding && (
-            <button onClick={() => setIsAdding(true)} className="flex items-center justify-center gap-2 bg-brand-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-600 transition-colors shadow-lg shadow-brand-500/25">
-              <Plus className="w-5 h-5" /> Cadastrar Novo Imóvel
-            </button>
+          {/* Action Buttons based on Role & Tab */}
+          {activeTab === 'properties' && isOwner && !isAddingProperty && (
+            <button onClick={() => setIsAddingProperty(true)} className="flex items-center gap-2 bg-brand-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-600 shadow-lg shadow-brand-500/25"><Plus className="w-5 h-5"/> Lançar Imóvel</button>
+          )}
+          {activeTab === 'furniture' && !isAddingFurniture && (
+            <button onClick={() => setIsAddingFurniture(true)} className="flex items-center gap-2 bg-indigo-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-600 shadow-lg shadow-indigo-500/25"><Plus className="w-5 h-5"/> Cadastrar Móvel Pessoal</button>
           )}
         </header>
 
-        {/* --- OWNER VIEW: ADD PROPERTY FORM --- */}
-        {isAdding && isOwnerOrBroker && (
-          <div className="glass p-8 rounded-3xl border border-white/10 mb-10 shadow-2xl relative overflow-hidden">
-            <div className="flex justify-between items-center mb-8 relative z-10">
-              <h2 className="text-2xl font-bold flex items-center gap-2"><Sparkles className="w-6 h-6 text-brand-500"/> Anunciar Imóvel (Fit-to-Suit)</h2>
-              <button onClick={() => setIsAdding(false)} className="text-slate-400 hover:text-white">Cancelar</button>
-            </div>
+        {/* -------------------- TAB: PROPERTIES -------------------- */}
+        {activeTab === 'properties' && (
+          <div className="animate-in fade-in zoom-in-95 duration-300">
+            {isAddingProperty && (
+               <div className="glass p-8 rounded-3xl border border-white/10 mb-10 shadow-2xl relative"><div className="flex justify-between items-center mb-6"><h2 className="text-2xl font-bold flex items-center gap-2"><Sparkles className="w-6 h-6 text-brand-500"/> Cadastrar Laje/Imóvel</h2><button onClick={() => setIsAddingProperty(false)} className="text-slate-400 hover:text-white">Cancelar</button></div>
+                 <form onSubmit={handleAddProperty} className="space-y-6">
+                   <div className="grid md:grid-cols-2 gap-4">
+                     <div><label className="block text-sm text-slate-300 mb-1">Título</label><input required value={propTitle} onChange={e=>setPropTitle(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white" /></div>
+                     <div><label className="block text-sm text-slate-300 mb-1">Status Base</label><select value={propStatus} onChange={e=>setPropStatus(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white"><option value="raw_contrapiso">Cru / Contrapiso</option><option value="needs_furniture">Sem Mobília</option></select></div>
+                   </div>
+                   <div><label className="block text-sm text-slate-300 mb-1">Endereço</label><input required value={propAddress} onChange={e=>setPropAddress(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white" /></div>
+                   <div className="grid md:grid-cols-2 gap-4">
+                     <div><label className="block text-sm text-slate-300 mb-1">Pedida Aluguel (R$)</label><input type="number" required value={propRent} onChange={e=>setPropRent(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white" /></div>
+                     <div><label className="block text-sm text-slate-300 mb-1">Budget Orçamento FTS (R$)</label><input type="number" value={propBudget} onChange={e=>setPropBudget(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white" /></div>
+                   </div>
+                   <div><label className="block text-sm text-slate-300 mb-1">Foto da Laje</label><input type="file" accept="image/*" onChange={e=>e.target.files && setImageFile(e.target.files[0])} className="w-full p-2" /></div>
+                   <div className="flex justify-end pt-4"><button type="submit" disabled={loading||uploadingImage} className="bg-brand-500 px-8 py-3 rounded-xl font-bold">Publicar Imóvel</button></div>
+                 </form>
+               </div>
+            )}
             
-            <form onSubmit={handleAddProperty} className="space-y-6 relative z-10">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Título do Anúncio</label>
-                  <input type="text" required value={title} onChange={e => setTitle(e.target.value)} className="w-full bg-dark-800 border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none transition-all" placeholder="Ex: Laje Corporativa 500m² - Pinheiros" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Status do Imóvel</label>
-                  <select value={status} onChange={e => setStatus(e.target.value)} className="w-full bg-dark-800 border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none transition-all">
-                    <option value="raw_contrapiso">Cru / No Contrapiso (Ideal para FTS Total)</option>
-                    <option value="needs_furniture">Pintado / Sem Mobília (Precisa de IA)</option>
-                    <option value="ready_to_move">Mobiliado / Pronto para morar</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Endereço Completo</label>
-                <div className="mt-1 relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                  <input type="text" required value={address} onChange={e => setAddress(e.target.value)} className="w-full pl-10 bg-dark-800 border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none transition-all" placeholder="Av. Brigadeiro Faria Lima, São Paulo - SP" />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Descrição Comercial</label>
-                <textarea required rows={3} value={description} onChange={e => setDescription(e.target.value)} className="w-full bg-dark-800 border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none transition-all" placeholder="Espaço cru incrível esperando customização corporativa ou residencial FTS." />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6 pb-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Valor do Aluguel Fixo (R$)</label>
-                  <input type="number" required min="0" value={rentPrice} onChange={e => setRentPrice(e.target.value)} className="w-full bg-dark-800 border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none transition-all" placeholder="5000" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Budget Liberado p/ Decorador FTS (R$)</label>
-                  <input type="number" min="0" value={fitOutBudget} onChange={e => setFitOutBudget(e.target.value)} className="w-full bg-dark-800 border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none transition-all" placeholder="Desconto ou aporte máximo na marcenaria" />
-                </div>
-              </div>
-
-              <div className="pb-4">
-                <label className="block text-sm font-medium text-slate-300 mb-1 flex items-center gap-2"><Sparkles className="w-4 h-4 text-brand-400"/> Imagem do Ambiente Cru</label>
-                <input 
-                  type="file" 
-                  accept="image/*"
-                  onChange={e => e.target.files && setImageFile(e.target.files[0])} 
-                  className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-brand-500 file:text-white hover:file:bg-brand-600 border border-slate-700 rounded-xl p-2 bg-dark-800 text-slate-300 cursor-pointer" 
-                />
-              </div>
-              
-              <div className="border-t border-slate-700 pt-6 flex justify-end">
-                <button type="submit" disabled={loading || uploadingImage} className="bg-brand-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-600 transition-colors disabled:opacity-50">
-                  {loading || uploadingImage ? 'Processando & Salvando...' : 'Publicar no Marketplace'}
-                </button>
-              </div>
-            </form>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Home className="text-brand-500"/> {isOwner ? 'Meus Ativos Imobiliários' : 'Marketplace de Lajes'}</h2>
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {(isOwner ? properties : marketProperties).map(prop => <PropertyCard key={prop.id} prop={prop} isOwner={isOwner} onInterest={handlePropertyInterest} />)}
+            </div>
+            {(isOwner ? properties : marketProperties).length === 0 && <p className="text-slate-500">Nenhum imóvel disponível aqui no momento.</p>}
           </div>
         )}
 
-        {/* --- COMMON VIEW: LIST OF PROPERTIES --- */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Home className="w-6 h-6 text-brand-500" />
-            <h2 className="text-2xl font-bold">{isOwnerOrBroker ? 'Meus Imóveis' : 'Vitrine de Imóveis (Oportunidades)'}</h2>
+        {/* -------------------- TAB: FURNITURE -------------------- */}
+        {activeTab === 'furniture' && (
+          <div className="animate-in fade-in zoom-in-95 duration-300">
+            {isAddingFurniture && (
+               <div className="glass p-8 rounded-3xl border border-indigo-500/30 mb-10 shadow-2xl relative"><div className="flex justify-between items-center mb-6"><h2 className="text-2xl font-bold flex items-center gap-2 text-indigo-100"><Sofa className="w-6 h-6 text-indigo-500"/> Ofertar Mobília para Permuta/FTS</h2><button onClick={() => setIsAddingFurniture(false)} className="text-slate-400 hover:text-white">Cancelar</button></div>
+                 <form onSubmit={handleAddFurniture} className="space-y-6">
+                   <div className="grid md:grid-cols-2 gap-4">
+                     <div><label className="block text-sm text-slate-300 mb-1">Que móvel é esse? (Ex: Rack Vintage de Madeira)</label><input required value={furnTitle} onChange={e=>setFurnTitle(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white" /></div>
+                     <div><label className="block text-sm text-slate-300 mb-1">Condição Física</label><select value={furnCondition} onChange={e=>setFurnCondition(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white"><option value="new">Novo na Caixa</option><option value="used">Usado (Bom Estado)</option><option value="needs_repair">Móvel Velho (Aceito Comodato por Storage)</option></select></div>
+                   </div>
+                   <div><label className="block text-sm text-slate-300 mb-1">Descrição</label><input required value={furnDesc} onChange={e=>setFurnDesc(e.target.value)} className="w-full bg-dark-800 border-none rounded-xl px-4 py-3 text-white" /></div>
+                   <div><label className="block text-sm text-indigo-300 mb-1">Qual o valor monetário estimado dessa peça? (Usado no desconto da Carência/HabitiCoins) R$</label><input type="number" required value={furnPrice} onChange={e=>setFurnPrice(e.target.value)} className="w-full bg-dark-800 border-indigo-500/50 focus:ring-indigo-500 rounded-xl px-4 py-3 text-white" /></div>
+                   <div><label className="block text-sm text-slate-300 mb-1">Foto Real da Peça</label><input type="file" accept="image/*" onChange={e=>e.target.files && setImageFile(e.target.files[0])} className="w-full p-2" /></div>
+                   <div className="flex justify-end pt-4"><button type="submit" disabled={loading||uploadingImage} className="bg-indigo-500 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-indigo-500/20">Registrar Peça no Motor de Match</button></div>
+                 </form>
+               </div>
+            )}
+            
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><ShoppingBag className="text-indigo-500"/> Peças Avulsas do Ecossistema</h2>
+            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+              {marketFurnitures.map(furn => <FurnitureCard key={furn.id} furn={furn} isOwner={furn.supplier_id === user.id} onInterest={handleFurnitureInterest} />)}
+            </div>
+            {marketFurnitures.length === 0 && <p className="text-slate-500">Ainda não há móveis de terceiros disponíveis para anexar em locações.</p>}
           </div>
-          
-          {isOwnerOrBroker ? (
-            // OWNER/BROKER VIEW = properties array
-            properties.length === 0 ? (
-              <div className="glass p-10 text-center rounded-2xl border border-white/5 opacity-70">
-                <p className="text-slate-400 mb-2">Você ainda não possui imóveis associados ao seu perfil.</p>
-                <p className="text-brand-400 font-medium cursor-pointer hover:underline" onClick={() => setIsAdding(true)}>Clique em "Cadastrar Novo Imóvel" para começar a receber lances de locatários e arquitetos!</p>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {properties.map(prop => <PropertyCard key={prop.id} prop={prop} isOwner={true} onInterest={handleInterest} />)}
-              </div>
-            )
-          ) : (
-            // TENANT VIEW = marketProperties array
-            marketProperties.length === 0 ? (
-               <div className="glass p-10 text-center rounded-2xl border border-white/5 opacity-70">
-                  <p className="text-slate-400">O Marketplace ainda não possui imóveis públicos disponíveis. Aguarde anúncios dos proprietários!</p>
-               </div>
-            ) : (
-               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                 {marketProperties.map(prop => <PropertyCard key={prop.id} prop={prop} isOwner={false} onInterest={handleInterest} />)}
-               </div>
-            )
-          )}
-        </div>
-        
+        )}
       </main>
     </div>
   );
 }
 
-// Subcomponente isolado para o Card de Imóvel
+// Subcomponente Real Estate
 function PropertyCard({ prop, isOwner, onInterest }: { prop: any, isOwner: boolean, onInterest: (id: string) => void }) {
   return (
-    <div className="glass rounded-2xl overflow-hidden hover:border-brand-500/50 transition-colors flex flex-col h-full border border-white/10 group shadow-2xl bg-dark-800">
-      <div className="h-56 bg-dark-900 relative flex items-center justify-center overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
-            style={{ backgroundImage: `url('${prop.image_raw_url || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}')` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-90" />
-          
-          <div className="absolute top-4 right-4 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase shadow-lg">
-            {prop.status.replace('_', ' ')}
-          </div>
-          
-          <div className="absolute bottom-4 right-4 z-10 glass px-4 py-2 rounded-full text-xs font-bold text-white shadow-xl flex items-center gap-2 backdrop-blur-md border border-white/20">
-            <Sparkles className="w-3 h-3 text-brand-400"/> IA Render (Em breve)
-          </div>
-      </div>
-      <div className="p-6 flex-1 flex flex-col relative z-10 bg-dark-800/80">
-        <h3 className="font-bold text-xl mb-1 line-clamp-1 text-white">{prop.title}</h3>
-        <p className="text-slate-400 text-sm mb-4 line-clamp-2 flex-1"><MapPin className="w-3 h-3 inline mr-1 text-slate-500"/>{prop.address}</p>
-        
-        <div className="flex justify-between items-end mb-6">
-            <div>
-              <p className="text-xs text-slate-500 font-medium">Aluguel Fixo</p>
-              <p className="font-bold text-2xl text-brand-400">R$ {prop.rent_price.toLocaleString('pt-BR')}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-xs text-slate-500 font-medium">FTS Budget</p>
-              <p className="font-bold text-lg text-emerald-400">R$ {prop.fit_out_budget?.toLocaleString('pt-BR') || '0'}</p>
-            </div>
-        </div>
-
-        {!isOwner && (
-          <button onClick={() => onInterest(prop.id)} className="w-full bg-white text-dark-900 py-3 rounded-xl font-bold hover:bg-slate-200 transition-colors shadow-lg flex items-center justify-center gap-2">
-            <Handshake className="w-5 h-5"/> Quero FTS Neste Imóvel!
-          </button>
-        )}
+    <div className="glass rounded-2xl overflow-hidden hover:border-brand-500/50 flex flex-col border border-white/10 group bg-dark-800">
+      <div className="h-48 bg-dark-900 relative"><div className="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" style={{ backgroundImage: `url('${prop.image_raw_url}')` }}/><div className="absolute inset-0 bg-gradient-to-t from-dark-900 opacity-90" /><div className="absolute top-4 right-4 bg-brand-500 text-xs font-bold px-3 py-1 rounded-full">{prop.status}</div></div>
+      <div className="p-5 relative z-10 flex-1 flex flex-col">
+        <h3 className="font-bold text-lg line-clamp-1">{prop.title}</h3>
+        <Flex justify="between" className="mt-4 border-t border-white/10 pt-4"><div className="text-brand-400 font-bold text-xl">R$ {prop.rent_price}</div><div className="text-emerald-400 font-bold text-sm">+ Orçamento Libre</div></Flex>
+        {!isOwner && <button onClick={() => onInterest(prop.id)} className="w-full mt-4 bg-white text-dark-900 py-2 rounded-xl font-bold flex justify-center gap-2"><Handshake className="w-4 h-4"/> Quero FTS Neste Imóvel!</button>}
       </div>
     </div>
   );
 }
+
+// Subcomponente Furniture
+function FurnitureCard({ furn, isOwner, onInterest }: { furn: any, isOwner: boolean, onInterest: (id: string) => void }) {
+  return (
+    <div className="glass rounded-2xl overflow-hidden shadow-2xl hover:border-indigo-500/50 flex flex-col border border-indigo-500/10 group bg-dark-800">
+      <div className="h-48 bg-dark-900 relative"><div className="absolute inset-0 bg-cover bg-center transition-transform group-hover:scale-105" style={{ backgroundImage: `url('${furn.image_raw_url}')` }}/><div className="absolute top-4 left-4 bg-indigo-900 border border-indigo-500 text-indigo-300 text-[10px] font-bold px-2 py-0.5 rounded-full">{furn.condition}</div></div>
+      <div className="p-4 relative z-10 flex-1 flex flex-col">
+        <h3 className="font-bold text-md text-white line-clamp-1 mb-1">{furn.title}</h3>
+        <p className="text-xs text-slate-400 line-clamp-2 min-h-[32px]">{furn.description}</p>
+        <Flex justify="between" className="mt-auto border-t border-white/10 pt-3 items-center">
+            <div className="text-[10px] text-slate-500 leading-tight">Valor Equivalente<br/>p/ Carência:</div>
+            <div className="text-indigo-400 font-bold text-lg"><Banknote className="w-4 h-4 inline mr-1 opacity-70"/>{furn.full_price}</div>
+        </Flex>
+        {!isOwner && <button onClick={() => onInterest(furn.id)} className="w-full mt-3 bg-indigo-500/20 hover:bg-indigo-500 hover:text-white text-indigo-300 border border-indigo-500/50 py-2 rounded-lg text-sm font-bold transition-all">Demonstrar Interesse</button>}
+      </div>
+    </div>
+  );
+}
+
+const Flex = ({children, className, justify}: any) => <div className={`flex items-center justify-${justify} ${className}`}>{children}</div>;
