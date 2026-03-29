@@ -50,11 +50,11 @@ function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/auth" className="w-full sm:w-auto px-8 py-4 bg-brand-500 text-white rounded-full font-bold flex items-center justify-center gap-2 hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/25">
-                Descubra Seu Espaço <ArrowRight className="w-4 h-4" />
+                Quero Alugar Sob Medida <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/pricing" className="w-full sm:w-auto px-8 py-4 glass text-white rounded-full font-bold hover:bg-white/10 transition-all">
-                Sou Investidor
-              </Link>
+              <a href="https://calendly.com/tailorspace28/30min" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 glass text-white rounded-full font-bold hover:bg-white/10 transition-all border border-brand-500/30">
+                Tenho Imóvel Vazio (Diagnóstico)
+              </a>
             </div>
           </motion.div>
         </div>
@@ -129,6 +129,63 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* Consultoria High Ticket (Peixe Assado) Section */}
+      <section className="py-24 bg-dark-800 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 text-sm font-bold mb-6 tracking-wider">
+                A SOLUÇÃO DONE-FOR-YOU
+              </span>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Nós mobiliamos e alugamos para você.</h2>
+              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+                Você tem um Studio ou Sala Comercial vazia gerando prejuízo? Com a nossa Consultoria Especializada, nós orquestramos 100% da adequação do seu imóvel usando a nossa estrutura jurídica e de parceiros, resolvendo o problema de ponta a ponta.
+              </p>
+              
+              <div className="space-y-6 mb-10">
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-full bg-brand-500/10 flex items-center justify-center shrink-0">
+                    <FileText className="w-6 h-6 text-brand-500" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-1">Pilar Jurídico</h4>
+                    <p className="text-slate-400">Contratos blindados de locação com cláusulas de carência e reversão total de benfeitorias.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-full bg-brand-500/10 flex items-center justify-center shrink-0">
+                    <Cpu className="w-6 h-6 text-brand-500" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-1">Pilar Operacional</h4>
+                    <p className="text-slate-400">Curadoria premium de parceiros de marcenaria e montagem FTS. Nós tocamos o projeto para o inquilino.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-full bg-brand-500/10 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-6 h-6 text-brand-500" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-1">Pilar Financeiro</h4>
+                    <p className="text-slate-400">Planilha de Viabilidade e ROI comprovando a rentabilidade da carência vs. imóvel parado.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="glass p-10 rounded-3xl border border-brand-500/30 shadow-2xl shadow-brand-500/10 text-center flex flex-col items-center justify-center">
+              <h3 className="text-2xl font-bold mb-4">Agenda Limitada</h3>
+              <p className="text-slate-400 mb-8">Devido à alta demanda de inquilinos, selecionamos apenas os imóveis com perfil estratégico para a nossa carteira de atendimento 1 a 1.</p>
+              <a href="https://calendly.com/tailorspace28/30min" target="_blank" rel="noopener noreferrer" className="w-full py-5 bg-brand-500 text-white rounded-xl font-bold hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/25 text-lg flex items-center justify-center gap-2">
+                Agendar Reunião Estratégica <ArrowRight className="w-5 h-5"/>
+              </a>
+              <p className="mt-4 text-xs text-slate-500">Diagnóstico Online Gratuito - 30 minutos</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-brand-900/30 border-y border-brand-500/20">
         <div className="max-w-4xl mx-auto text-center px-6">
@@ -136,9 +193,14 @@ function LandingPage() {
           <p className="text-lg text-slate-300 mb-10">
             Seja você um Inquilino buscando o espaço perfeito ou um Proprietário com um imóvel parado gerando despesas.
           </p>
-          <Link to="/auth" className="inline-flex px-10 py-5 bg-white text-dark-900 rounded-full font-bold text-lg hover:bg-slate-200 transition-colors shadow-xl shadow-white/10">
-            Começar Agora
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link to="/auth" className="w-full sm:w-auto px-8 py-4 bg-white text-dark-900 rounded-full font-bold hover:bg-slate-200 transition-colors shadow-xl shadow-white/10">
+              Quero Alugar Sob Medida
+            </Link>
+            <a href="https://calendly.com/tailorspace28/30min" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 bg-brand-500 text-white rounded-full font-bold hover:bg-brand-600 transition-all shadow-xl shadow-brand-500/25">
+              Quero Mobiliar Meu Imóvel
+            </a>
+          </div>
         </div>
       </section>
 
