@@ -4,6 +4,7 @@ import { Building2, ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote }
 
 import AuthPage from './pages/Auth';
 import DashboardPage from './pages/Dashboard';
+import BrokerClassPage from './pages/BrokerClassPage';
 
 function LandingPage() {
   return (
@@ -283,6 +284,7 @@ export default function App() {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/aulas" element={<BrokerClassPage />} />
       </Routes>
     </Router>
   );
