@@ -233,16 +233,17 @@ function PricingPage() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Tenant Plan */}
           <div className="glass p-8 md:p-10 rounded-3xl relative overflow-hidden border-white/10 flex flex-col">
-            <h3 className="text-2xl font-bold mb-2">Moradores & Startups</h3>
-            <p className="text-slate-400 mb-6 flex-1">Para pessoas físicas ou startups que buscam alugar um espaço perfeito, já com mobília e reforma inclusas.</p>
+            <h3 className="text-2xl font-bold mb-2">TailorSpace Pass</h3>
+            <p className="text-slate-400 mb-6 flex-1">More num espaço customizado com a sua cara, sem gastar 1 centavo antecipado com marcenaria pesada.</p>
             <div className="text-5xl font-bold mb-8">R$ 197<span className="text-lg text-slate-500 font-normal">/mês</span></div>
-            <ul className="space-y-4 mb-10">
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Acesse centenas de Studios e Salas cruas</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Peça a mobília/reforma na plataforma</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Pague o Fit-out diluído na mensalidade</li>
+            <ul className="space-y-4 mb-10 text-sm">
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>Match de Imóveis:</strong> Curadoria de Studios no contrapiso prontos para carência.</span></li>
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>Fit-Out Diluído:</strong> Seu projeto 100% financiado e embutido no aluguel.</span></li>
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>Zero Obra:</strong> Nós gerenciamos a montagem. Você só pega a chave na mão.</span></li>
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>APP TailorSpace:</strong> Gestão digital, contratos blindados, suporte e vistorias.</span></li>
             </ul>
             <a href={import.meta.env.VITE_HOTMART_TENANT_URL || '#'} target="_blank" rel="noopener noreferrer" className="block text-center w-full py-4 glass text-white rounded-xl font-semibold hover:bg-white/10 transition-colors">
-              Assinar Plano Locatário via Hotmart
+              Assinar o TailorSpace Pass
             </a>
           </div>
 
