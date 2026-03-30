@@ -248,17 +248,18 @@ function PricingPage() {
 
           {/* Investor Plan */}
           <div className="glass p-8 md:p-10 rounded-3xl relative overflow-hidden ring-2 ring-brand-500 flex flex-col shadow-2xl shadow-brand-500/20">
-            <div className="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl uppercase tracking-wider">Premium</div>
-            <h3 className="text-2xl font-bold mb-2">Investidores (Mobília & Corporate)</h3>
-            <p className="text-slate-400 mb-6 flex-1">Financie o "Fit-out" de Studios vazios para Airbnb ou monte projetos corporativos BTS em troca de alta rentabilidade.</p>
+            <div className="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl uppercase tracking-wider">High Ticket</div>
+            <h3 className="text-2xl font-bold mb-2">Aceleração de Ativos FTS</h3>
+            <p className="text-slate-400 mb-6 flex-1">Destrave lucros em imóveis no contrapiso com a nossa Mentoria Estratégica, Cofre Jurídico e Software exclusivo.</p>
             <div className="text-5xl font-bold mb-8">R$ 1.990<span className="text-lg text-slate-500 font-normal">/mês</span></div>
-            <ul className="space-y-4 mb-10">
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Acesso a Studios de donos sem liquidez</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Crie carteiras de rendimento com Mobília</li>
-              <li className="flex items-center gap-3 text-slate-300"><ShieldCheck className="w-6 h-6 text-brand-500" /> Prioridade de Originação Corporate (FTS)</li>
+            <ul className="space-y-4 mb-10 text-sm">
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>Setup 1-a-1:</strong> Diagnóstico e destravamento individual comigo.</span></li>
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>Mentoria:</strong> Encontros quinzenais para análise de casos e estratégia.</span></li>
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>Cofre Jurídico:</strong> Acesso às nossas minutas de Carência e Reversão.</span></li>
+              <li className="flex items-start gap-3 text-slate-300"><ShieldCheck className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" /> <span><strong>Ecossistema VIP:</strong> Fura-fila V.I.P no nosso Deal Flow de Imóveis.</span></li>
             </ul>
             <a href={import.meta.env.VITE_HOTMART_INVESTOR_URL || '#'} target="_blank" rel="noopener noreferrer" className="block text-center w-full py-4 bg-brand-500 text-white rounded-xl font-semibold hover:bg-brand-600 shadow-lg shadow-brand-500/25 transition-all text-lg">
-              Assinar Plano Investidor via Hotmart
+              Entrar na Aceleração via Hotmart
             </a>
           </div>
         </div>
