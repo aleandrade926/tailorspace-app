@@ -12,19 +12,29 @@ import {
   PlayCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 export default function BrokerClassPage() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email && name) {
-      // Setup ready for real Supabase edge function or form integration
+    if (!email || !name) return;
+    setLoading(true);
+    setFormError(null);
+    const { error } = await supabase
+      .from('leads')
+      .insert([{ name: name.trim(), email: email.trim().toLowerCase(), source: 'aulas' }]);
+    setLoading(false);
+    if (error) {
+      setFormError('Erro ao salvar. Tente novamente.');
+      console.error('Supabase error:', error);
+    } else {
       setSubmitted(true);
-      
-      // Mark as [/] in task tracker
     }
   };
 
@@ -108,8 +118,15 @@ export default function BrokerClassPage() {
                       placeholder="seu.email@dominio.com.br"
                     />
                   </div>
-                  <button type="submit" className="w-full mt-6 bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 text-lg">
-                    Quero Minha Vaga na Aula <ArrowRight className="w-5 h-5" />
+                  {formError && (
+                    <p className="text-red-400 text-sm text-center">{formError}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full mt-6 bg-brand-500 hover:bg-brand-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 text-lg"
+                  >
+                    {loading ? 'Salvando...' : <>Quero Minha Vaga na Aula <ArrowRight className="w-5 h-5" /></>}
                   </button>
                   <p className="text-center text-xs text-slate-500 mt-4 flex items-center justify-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" /> Fique tranquilo, não enviamos SPAM.
