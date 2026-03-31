@@ -9,9 +9,7 @@ import {
   TrendingUp, 
   CheckCircle2,
   CalendarDays,
-  PlayCircle,
-  Instagram,
-  Facebook
+  PlayCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
@@ -272,10 +270,10 @@ export default function BrokerClassPage() {
         <p>Este sistema completo de captação faz parte do ecossistema educacional TailorSpace.</p>
         <div className="flex items-center justify-center gap-6 my-4">
           <a href="https://www.instagram.com/tailorspaceftsoficial/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
-            <Instagram className="w-4 h-4" /> @tailorspaceftsoficial
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @tailorspaceftsoficial
           </a>
           <a href="https://www.facebook.com/tailorspaceftsoficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
-            <Facebook className="w-4 h-4" /> TailorSpace - Fit to Suit Brasil
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> TailorSpace - Fit to Suit Brasil
           </a>
         </div>
         <p className="mt-2 text-xs opacity-50">Não temos relação com o Facebook / Grupo Meta. A rentabilidade é baseada em esforço comercial individual de locação real estate.</p>
