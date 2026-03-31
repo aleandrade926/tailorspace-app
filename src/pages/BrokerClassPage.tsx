@@ -9,7 +9,9 @@ import {
   TrendingUp, 
   CheckCircle2,
   CalendarDays,
-  PlayCircle
+  PlayCircle,
+  Instagram,
+  Facebook
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
@@ -268,6 +270,14 @@ export default function BrokerClassPage() {
       {/* Footer */}
       <footer className="py-10 border-t border-white/5 text-center text-sm text-slate-600 bg-dark-900">
         <p>Este sistema completo de captação faz parte do ecossistema educacional TailorSpace.</p>
+        <div className="flex items-center justify-center gap-6 my-4">
+          <a href="https://www.instagram.com/tailorspaceftsoficial/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
+            <Instagram className="w-4 h-4" /> @tailorspaceftsoficial
+          </a>
+          <a href="https://www.facebook.com/tailorspaceftsoficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
+            <Facebook className="w-4 h-4" /> TailorSpace - Fit to Suit Brasil
+          </a>
+        </div>
         <p className="mt-2 text-xs opacity-50">Não temos relação com o Facebook / Grupo Meta. A rentabilidade é baseada em esforço comercial individual de locação real estate.</p>
       </footer>
     </div>
