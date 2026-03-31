@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate, Link } from 'react-router-dom';
-import { Building2, ArrowLeft, Mail, Lock, User } from 'lucide-react';
+import { Building2, ArrowLeft, Mail, Lock, User, Instagram, Facebook } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function AuthPage() {

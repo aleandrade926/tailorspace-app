@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Building2, User, Plus, Home, Sparkles, Handshake, Sofa, ShoppingBag, Banknote, Lock } from 'lucide-react';
+import { LogOut, Building2, User, Plus, Home, Sparkles, Handshake, Sofa, ShoppingBag, Banknote, Lock, Instagram, Facebook } from 'lucide-react';
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -258,6 +258,19 @@ export default function DashboardPage() {
           </div>
         )}
       </main>
+
+      {/* Footer Social */}
+      <footer className="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 text-center">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+          <a href="https://www.instagram.com/tailorspaceftsoficial/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors text-sm font-medium">
+            <Instagram className="w-5 h-5 text-brand-500" /> @tailorspaceftsoficial
+          </a>
+          <a href="https://www.facebook.com/tailorspaceftsoficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors text-sm font-medium">
+            <Facebook className="w-5 h-5 text-brand-500" /> TailorSpace - Fit to Suit Brasil
+          </a>
+        </div>
+        <p className="text-slate-600 text-xs mt-8">Painel Exclusivo | Operação FTS © 2026</p>
+      </footer>
     </div>
   );
 }
