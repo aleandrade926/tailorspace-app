@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Building2, ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote } from 'lucide-react';
+import { Building2, ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote, Instagram, Facebook } from 'lucide-react';
 
 import AuthPage from './pages/Auth';
 import DashboardPage from './pages/Dashboard';
@@ -20,6 +20,12 @@ function LandingPage() {
             <a href="#manifesto" className="hover:text-white transition-colors">O Manifesto</a>
             <a href="#how-it-works" className="hover:text-white transition-colors">Como Funciona</a>
             <Link to="/pricing" className="hover:text-white transition-colors text-brand-400">Planos e Monetização</Link>
+            <a href="https://www.instagram.com/tailorspaceftsoficial/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 text-slate-400 transition-colors" aria-label="Instagram">
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a href="https://www.facebook.com/tailorspaceftsoficial" target="_blank" rel="noopener noreferrer" className="hover:text-brand-400 text-slate-400 transition-colors" aria-label="Facebook">
+              <Facebook className="w-5 h-5" />
+            </a>
           </div>
           <Link to="/auth" className="bg-white text-dark-900 px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-200 transition-colors shadow-lg shadow-white/10">
             Acessar Plataforma
@@ -289,6 +295,14 @@ function PricingPage() {
         <div className="mt-16 pb-8 text-center">
           <p className="text-slate-500 mb-2">Precisa customizar um alto volume de ativos operacionais?</p>
           <a href="mailto:comercial@tailorspace.com.br" className="text-brand-500 font-medium hover:text-brand-400 transition-colors">Fale com nossos especialistas: comercial@tailorspace.com.br</a>
+          <div className="flex items-center justify-center gap-6 mt-6">
+            <a href="https://www.instagram.com/tailorspaceftsoficial/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-brand-400 transition-colors text-sm">
+              <Instagram className="w-5 h-5" /> @tailorspaceftsoficial
+            </a>
+            <a href="https://www.facebook.com/tailorspaceftsoficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-brand-400 transition-colors text-sm">
+              <Facebook className="w-5 h-5" /> TailorSpace - Fit to Suit Brasil
+            </a>
+          </div>
         </div>
       </div>
     </div>
