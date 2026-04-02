@@ -27,7 +27,7 @@ function LandingPage() {
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
           </div>
-          <Link to="/auth" className="bg-white text-dark-900 px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-200 transition-colors shadow-lg shadow-white/10">
+          <Link to="/auth" className="bg-white text-dark-900 px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-slate-200 transition-colors shadow-lg shadow-white/10">
             Acessar Plataforma
           </Link>
         </div>
@@ -70,14 +70,16 @@ function LandingPage() {
       {/* Capa Visual */}
       <section className="px-4 md:px-6 py-8 md:py-12 bg-dark-900">
         <div className="max-w-7xl mx-auto">
-          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => window.open('/aulas', '_self')}>
-            <img
-              src="/capa-site.png"
-              alt="Conectamos Imóveis Vazios a Quem Quer Morar Sob Medida — TailorSpace"
-              className="w-full min-h-[400px] md:min-h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-dark-900/30 via-transparent to-transparent" />
-            <div className="absolute bottom-6 right-6">
+          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
+            <div className="overflow-x-auto flex [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" onClick={() => window.open('/aulas', '_self')}>
+              <img
+                src="/capa-site.png"
+                alt="Conectamos Imóveis Vazios a Quem Quer Morar Sob Medida — TailorSpace"
+                className="h-[400px] w-auto max-w-none md:h-auto md:w-full md:object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-dark-900/30 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-6 right-6 pointer-events-none">
               <span className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3 rounded-full text-sm shadow-lg transition-colors">
                 Ver Aula Gratuita →
               </span>
