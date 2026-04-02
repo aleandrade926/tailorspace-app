@@ -43,16 +43,16 @@ function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 text-sm font-medium mb-6">
+            <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 text-xs md:text-sm font-medium mb-4 md:mb-6 leading-tight">
               O 1º Marketplace de Fit-out, Mobília e Build-to-Suit do Brasil
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-tight">
               Não alugue o que existe.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-blue-400">
                 Alugue feito sob medida.
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-2 md:px-0">
               Seu Studio ou Escritório mobiliado como você sempre sonhou, sem gastar com obra. Conectamos imóveis em contrapiso e retrofits vazios a moradores e startups. Reforma e mobília diluídas no seu aluguel.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -68,13 +68,13 @@ function LandingPage() {
       </section>
 
       {/* Capa Visual */}
-      <section className="px-6 py-12 bg-dark-900">
+      <section className="px-4 md:px-6 py-8 md:py-12 bg-dark-900">
         <div className="max-w-7xl mx-auto">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => window.open('/aulas', '_self')}>
+          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => window.open('/aulas', '_self')}>
             <img
               src="/capa-site.png"
               alt="Conectamos Imóveis Vazios a Quem Quer Morar Sob Medida — TailorSpace"
-              className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full min-h-[400px] md:min-h-auto object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-dark-900/30 via-transparent to-transparent" />
             <div className="absolute bottom-6 right-6">
@@ -156,16 +156,16 @@ function LandingPage() {
       </section>
 
       {/* Consultoria High Ticket (Peixe Assado) Section */}
-      <section className="py-24 bg-dark-800 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-dark-800 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div>
-              <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 text-sm font-bold mb-6 tracking-wider">
+              <span className="inline-block py-1 px-3 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 text-xs md:text-sm font-bold mb-4 md:mb-6 tracking-wider">
                 A SOLUÇÃO DONE-FOR-YOU
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">Nós mobiliamos e alugamos para você.</h2>
-              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Nós mobiliamos e alugamos para você.</h2>
+              <p className="text-base md:text-lg text-slate-300 mb-6 md:mb-8 leading-relaxed">
                 Você tem um Studio ou Sala Comercial vazia gerando prejuízo? Com a nossa Consultoria Especializada, nós orquestramos 100% da adequação do seu imóvel usando a nossa estrutura jurídica e de parceiros, resolvendo o problema de ponta a ponta.
               </p>
               

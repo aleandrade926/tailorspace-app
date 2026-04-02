@@ -42,54 +42,54 @@ export default function BrokerClassPage() {
     <div className="min-h-screen bg-dark-900 text-slate-100 font-sans selection:bg-brand-500/30">
       {/* Navbar Minimal*/ }
       <nav className="fixed w-full z-50 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 group hover:opacity-80 transition-opacity">
-            <Building2 className="w-8 h-8 text-brand-500 group-hover:text-brand-400 transition-colors" />
-            <span className="text-xl font-bold tracking-tight text-white">
+            <Building2 className="w-7 h-7 md:w-8 md:h-8 text-brand-500 group-hover:text-brand-400 transition-colors shrink-0" />
+            <span className="text-lg md:text-xl font-bold tracking-tight text-white">
               Tailor<span className="text-brand-500 group-hover:text-brand-400 transition-colors">Space</span>
             </span>
           </Link>
           <div className="hidden md:flex items-center gap-2 text-sm font-medium text-slate-400">
-            <CalendarDays className="w-4 h-4 text-brand-500" />
+            <CalendarDays className="w-4 h-4 text-brand-500 shrink-0" />
             <span>Toda Quinta-Feira, ao vivo.</span>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
+      <section className="pt-28 md:pt-32 pb-16 md:pb-20 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.1),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(5,150,105,0.05),transparent_50%)]" />
         
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-12 items-center relative z-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium mb-6 mt-6 lg:mt-0">
-              <PlayCircle className="w-4 h-4" />
+            <div className="inline-flex flex-wrap items-center gap-2 px-3 py-1.5 md:py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium mb-6 mt-4 md:mt-6 lg:mt-0">
+              <PlayCircle className="w-4 h-4 shrink-0" />
               Aula Oculta | Método Fit-to-Suit
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 mt-2 md:mt-0">
               A Nova Profissão: Gere <span className="text-gradient">R$ 5.000 em 30 Dias</span> Conectando Imóveis Vazios.
             </h1>
-            <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-xl">
+            <p className="text-base md:text-lg text-slate-400 mb-8 leading-relaxed max-w-xl">
               Descubra o método estratégico e jurídico para lucrar alto transformando Studios no contrapiso em ativos mobiliados premium, usando o seu celular e <strong className="text-slate-200">zero investimento inicial</strong>.
             </p>
             
-            <div className="flex items-center gap-4 text-sm text-slate-500 font-medium">
-              <div className="flex -space-x-3">
-                <div className="w-10 h-10 rounded-full border-2 border-dark-900 bg-slate-700" />
-                <div className="w-10 h-10 rounded-full border-2 border-dark-900 bg-slate-600" />
-                <div className="w-10 h-10 rounded-full border-2 border-dark-900 bg-slate-500" />
+            <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-500 font-medium">
+              <div className="flex -space-x-3 shrink-0">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-dark-900 bg-slate-700" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-dark-900 bg-slate-600" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-dark-900 bg-slate-500" />
               </div>
               <span>Junte-se a dezenas de Novos Brokers.</span>
             </div>
           </div>
 
           {/* Form */}
-          <div className="glass p-8 md:p-10 rounded-3xl border-white/10 shadow-2xl relative w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+          <div className="glass p-6 sm:p-8 md:p-10 rounded-3xl border-white/10 shadow-2xl relative w-full max-w-md mx-auto lg:mx-0 lg:ml-auto mt-8 lg:mt-0">
             {!submitted ? (
               <>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold mb-2">Garanta seu Link de Acesso</h3>
+                <div className="text-center mb-6 md:mb-8">
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">Garanta seu Link de Acesso</h3>
                   <p className="text-slate-400 text-sm">A aula será na <strong>próxima quinta-feira</strong>. O replay sai do ar em 7 dias cravados e vai direto para a comunidade paga.</p>
                 </div>
 
@@ -157,10 +157,10 @@ export default function BrokerClassPage() {
       </section>
 
       {/* Dores */}
-      <section className="py-20 bg-dark-800/50 border-y border-white/5 px-6">
+      <section className="py-16 md:py-20 bg-dark-800/50 border-y border-white/5 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-3xl font-bold mb-8">Por que o mercado tradicional está morto?</h2>
-          <div className="text-lg text-slate-300 leading-relaxed space-y-4">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8">Por que o mercado tradicional está morto?</h2>
+          <div className="text-base md:text-lg text-slate-300 leading-relaxed space-y-4">
             <p>
               Corretores imobiliários disputam migalhas, rezando para fechar vendas demoradas de 6 meses a 1 ano de imóveis velhos.
             </p>
@@ -175,11 +175,11 @@ export default function BrokerClassPage() {
       </section>
 
       {/* Pilares */}
-      <section className="py-24 px-6 relative">
+      <section className="py-16 md:py-24 px-4 md:px-6 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">O Método "Broker": 3 Frentes de Dinheiro</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg hover:text-white transition-colors">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">O Método "Broker": 3 Frentes de Dinheiro</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg hover:text-white transition-colors">
               O ecossistema TailorSpace ensina corretores e empreendedores autônomos a preencher essa lacuna perigosamente ociosa usando o seu tempo.
             </p>
           </div>
@@ -220,11 +220,11 @@ export default function BrokerClassPage() {
       </section>
 
       {/* Para Quem é */}
-      <section className="py-24 bg-dark-800/50 border-t border-white/5 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24 bg-dark-800/50 border-t border-white/5 px-4 md:px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Quem ganha dinheiro nessa Aula?</h2>
-            <p className="text-lg text-slate-400 mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">Quem ganha dinheiro nessa Aula?</h2>
+            <p className="text-base md:text-lg text-slate-400 mb-8 md:mb-10">
               Desenhada cirurgicamente para separar curiosos de executores e parceiros estratégicos reais no ecossistema Real Estate da TailorSpace.
             </p>
             
@@ -250,33 +250,33 @@ export default function BrokerClassPage() {
             </ul>
           </div>
           
-          <div className="glass p-10 rounded-3xl border-brand-500/20 text-center ring-1 ring-brand-500/20 shadow-2xl shadow-brand-500/10">
-            <h3 className="text-3xl font-bold mb-4">Ação Exigida:</h3>
-            <p className="text-slate-300 mb-8 leading-relaxed">
+          <div className="glass p-6 sm:p-8 md:p-10 rounded-3xl border-brand-500/20 text-center ring-1 ring-brand-500/20 shadow-xl sm:shadow-2xl shadow-brand-500/10 mt-6 md:mt-0">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Ação Exigida:</h3>
+            <p className="text-sm md:text-base text-slate-300 mb-6 md:mb-8 leading-relaxed">
               O Fit-To-Suit para pequenos Studios nunca antes foi ensinado abertamente na prateleira gratuita do Brasil de locações. 
             </p>
-            <p className="text-brand-400 font-bold mb-8">
+            <p className="text-sm md:text-base text-brand-400 font-bold mb-6 md:mb-8">
               A aula NÃO VAI TER REPLAY aberto. Após 7 dias, subirá trancada diretamente para a área privativa da comunidade paga e o bonde online vai passar.
             </p>
-            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2">
-              Voltar ao Topo e me Cadastrar Agora <ArrowRight className="w-5 h-5" />
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3.5 md:py-4 px-4 md:px-6 rounded-xl transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2 text-sm md:text-base">
+              Voltar ao Topo e me Cadastrar <ArrowRight className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
             </button>
           </div>
         </div>
       </section>
       
       {/* Footer */}
-      <footer className="py-10 border-t border-white/5 text-center text-sm text-slate-600 bg-dark-900">
+      <footer className="py-8 md:py-10 px-4 border-t border-white/5 text-center text-xs md:text-sm text-slate-600 bg-dark-900">
         <p>Este sistema completo de captação faz parte do ecossistema educacional TailorSpace.</p>
-        <div className="flex items-center justify-center gap-6 my-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 my-6 md:my-4">
           <a href="https://www.instagram.com/tailorspaceftsoficial/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @tailorspaceftsoficial
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @tailorspaceftsoficial
           </a>
           <a href="https://www.facebook.com/tailorspaceftsoficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> TailorSpace - Fit to Suit Brasil
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> TailorSpace - Fit to Suit Brasil
           </a>
         </div>
-        <p className="mt-2 text-xs opacity-50">Não temos relação com o Facebook / Grupo Meta. A rentabilidade é baseada em esforço comercial individual de locação real estate.</p>
+        <p className="mt-2 text-[10px] md:text-xs opacity-50 px-2">Não temos relação com o Facebook / Grupo Meta. A rentabilidade é baseada em esforço comercial individual de locação real estate.</p>
       </footer>
     </div>
   );
