@@ -140,15 +140,14 @@ export default function BrokerClassPage() {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Pré-inscrição Completa!</h3>
                 <p className="text-slate-300 mb-8 leading-relaxed text-sm">
-                  O link VIP da Aula Ao Vivo será enviado no seu WhatsApp e também no grupo silencioso de avisos (Onde soltamos o material extra).
+                  O link VIP da Aula Ao Vivo será enviado via WhatsApp para que você não perca por nada.
                 </p>
                 <div className="p-4 bg-dark-800 rounded-2xl border border-brand-500/20 mb-6">
                   <p className="font-bold text-white mb-1">Passo Único e Final:</p>
-                  <p className="text-slate-400 text-xs">Entre no grupo V.I.P abaixo para não perder o link da sala.</p>
+                  <p className="text-slate-400 text-xs">Fale diretamente comigo no WhatsApp para garantir seu acesso.</p>
                 </div>
-                {/* O user pode trocar pelo link real do grupo do Whatsapp */}
-                <a href="https://chat.whatsapp.com/" target="_blank" rel="noopener noreferrer" className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-[#25D366]/25 flex items-center justify-center gap-2 text-lg">
-                  Entrar no Grupo de Avisos
+                <a href="https://wa.me/5511993725876" target="_blank" rel="noopener noreferrer" className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-[#25D366]/25 flex items-center justify-center gap-2 text-lg">
+                  Falar no WhatsApp
                 </a>
               </div>
             )}
@@ -273,7 +272,10 @@ export default function BrokerClassPage() {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @tailorspaceftsoficial
           </a>
           <a href="https://www.facebook.com/tailorspaceftsoficial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> TailorSpace - Fit to Suit Brasil
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Fit to Suit Brasil
+          </a>
+          <a href="https://wa.me/5511993725876" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-500 hover:text-brand-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg> (11) 99372-5876
           </a>
         </div>
         <p className="mt-2 text-[10px] md:text-xs opacity-50 px-2">Não temos relação com o Facebook / Grupo Meta. A rentabilidade é baseada em esforço comercial individual de locação real estate.</p>
