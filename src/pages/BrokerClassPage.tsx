@@ -211,7 +211,7 @@ export default function BrokerClassPage() {
               </div>
               <h3 className="text-xl font-bold mb-4 text-white">O Sprint de 30 Dias</h3>
               <p className="text-slate-400 leading-relaxed">
-                Nosso passo a passo semanal para assinar seu primeiro negócio imobiliário formatado como Corretor FTS (Mesmo que você não saiba marcenaria) e botar R$ 5k brutos no bolso.
+                Nosso passo a passo semanal para assinar seu primeiro negócio imobiliário formatado como Broker FTS (Mesmo sem estoque) e botar R$ 5k brutos no bolso.
               </p>
             </div>
           </div>
