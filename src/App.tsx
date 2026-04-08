@@ -5,6 +5,7 @@ import { Building2, ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote }
 import AuthPage from './pages/Auth';
 import DashboardPage from './pages/Dashboard';
 import BrokerClassPage from './pages/BrokerClassPage';
+import OwnerLandingPage from './pages/OwnerLandingPage';
 
 function LandingPage() {
   return (
@@ -337,6 +338,7 @@ export default function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/aulas" element={<BrokerClassPage />} />
+        <Route path="/proprietario" element={<OwnerLandingPage />} />
       </Routes>
       <a 
         href="https://wa.me/5511993725876" 
