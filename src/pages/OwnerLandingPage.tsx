@@ -85,14 +85,19 @@ export default function OwnerLandingPage() {
             Seu Studio ou Sala Comercial no contrapiso entregue "chave na mão" para o inquilino, sem você precisar derreter seu patrimônio com marcenaria pesada e projetos caros. 
           </p>
 
-          {/* VSL Placeholder (Opcional) */}
-          <div className="w-full max-w-3xl mx-auto bg-dark-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative aspect-video mb-16 flex items-center justify-center group cursor-pointer hover:border-brand-500/30 transition-colors">
-            <p className="text-slate-500 font-medium text-sm">[ Espaço Reservado para o Vídeo VSL (Apresente o Método) ]</p>
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-16 h-16 bg-brand-500/20 rounded-full flex items-center justify-center">
-                 <div className="w-0 h-0 border-y-[10px] border-y-transparent border-l-[16px] border-l-brand-400 ml-1"></div>
-              </div>
-            </div>
+          {/* VSL Video */}
+          <div className="w-full max-w-3xl mx-auto bg-dark-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative aspect-video mb-16">
+            <iframe 
+               width="100%" 
+               height="100%" 
+               src="https://www.youtube.com/embed/kfzVZal1Azs?rel=0&modestbranding=1" 
+               title="Acesso Condicionado" 
+               frameBorder="0" 
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+               referrerPolicy="strict-origin-when-cross-origin" 
+               allowFullScreen
+               className="absolute top-0 left-0 w-full h-full"
+            ></iframe>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-16 text-left border-y border-white/5 py-12">
