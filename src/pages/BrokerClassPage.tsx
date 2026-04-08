@@ -233,7 +233,7 @@ export default function BrokerClassPage() {
                   <TrendingUp className="w-6 h-6 text-brand-400" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">Corretores com Creci ou sem.</h4>
+                  <h4 className="text-white font-bold text-lg mb-1">Brokers</h4>
                   <p className="text-slate-400">Pessoas que odiaram ciclos gigantes de burocracia de financiamento federal (Caixa) de 10 meses e buscam liquidez e giro alto rápido.</p>
                 </div>
               </li>
