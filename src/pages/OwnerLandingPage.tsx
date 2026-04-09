@@ -182,17 +182,20 @@ export default function OwnerLandingPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-2 uppercase tracking-wide">Qual a Fase Atual da Obra?</label>
+                    <label htmlFor="stage" className="block text-xs font-semibold text-slate-300 mb-2 uppercase tracking-wide">Qual a Fase Atual da Obra?</label>
                     <select 
+                      id="stage"
+                      title="Fase atual da obra"
                       required
                       value={stage}
                       onChange={(e) => setStage(e.target.value)}
                       className="w-full bg-dark-800 border-white/10 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500/50 outline-none transition-all appearance-none"
                     >
                       <option value="" disabled>Selecione uma opção...</option>
-                      <option value="planta">Início/Ainda na Planta</option>
-                      <option value="contrapiso">No Contrapiso (Chave na mão da construtora)</option>
-                      <option value="antigo">Imóvel Antigo precisando de Retrofit</option>
+                      <option value="contrapiso">No contrapiso</option>
+                      <option value="acabamento_sem_moveis">Com acabamento, mas sem móveis</option>
+                      <option value="armarios_cozinha_banheiro">Com armários na cozinha e no banheiro</option>
+                      <option value="retrofit">Imóvel Antigo precisando de Retrofit</option>
                     </select>
                   </div>
                   
