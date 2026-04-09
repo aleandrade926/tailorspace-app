@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Building2, ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote } from 'lucide-react';
 
 import AuthPage from './pages/Auth';
 import DashboardPage from './pages/Dashboard';

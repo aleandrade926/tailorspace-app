@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Building2, User, Plus, Home, Sparkles, Handshake, Sofa, ShoppingBag, Banknote, Lock } from 'lucide-react';
+import { LogOut, User, Plus, Home, Sparkles, Handshake, Sofa, ShoppingBag, Banknote, Lock } from 'lucide-react';
 
 export default function DashboardPage() {
   const navigate = useNavigate();
