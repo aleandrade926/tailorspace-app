@@ -57,7 +57,7 @@ export default function OwnerLandingPage() {
       <nav className="w-full z-50 bg-dark-900/80 backdrop-blur-md border-b border-white/5 py-6">
         <div className="max-w-4xl mx-auto px-4 md:px-6 flex justify-center">
           <div className="flex items-center gap-2">
-            <Building2 className="w-8 h-8 text-brand-500 shrink-0" />
+            <img src="/logo.png" alt="Tailorspace" className="w-10 h-10 object-contain shrink-0" />
             <span className="text-xl font-bold tracking-tight text-white">
               Tailor<span className="text-brand-500">Space</span>
             </span>

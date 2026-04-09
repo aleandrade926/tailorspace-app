@@ -166,7 +166,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-dark-900 text-slate-100 pb-20">
       <nav className="glass border-b border-white/10 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
         <div className="flex items-center gap-2">
-          <Building2 className="w-6 h-6 text-brand-500" />
+          <img src="/logo.png" alt="Tailorspace" className="w-8 h-8 object-contain" />
           <span className="font-bold text-lg hidden sm:inline">TailorSpace FTS Hub</span>
         </div>
         <div className="flex items-center gap-6">

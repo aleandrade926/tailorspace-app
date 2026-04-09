@@ -14,7 +14,7 @@ function LandingPage() {
       <nav className="fixed w-full z-50 glass border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Building2 className="w-8 h-8 text-brand-500" />
+            <img src="/logo.png" alt="TailorSpace Logo" className="w-10 h-10 object-contain" />
             <span className="text-xl font-bold tracking-tight">TailorSpace</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
@@ -239,7 +239,7 @@ function LandingPage() {
       {/* Footer / Contact */}
       <footer className="py-12 text-center">
         <div className="mb-6">
-          <Building2 className="w-8 h-8 text-slate-600 mx-auto" />
+          <img src="/logo.png" alt="TailorSpace Logo" className="w-12 h-12 mx-auto grayscale opacity-50" />
         </div>
         <p className="text-slate-400 mb-2">
           Dúvidas ou projetos especiais? Fale conosco: <a href="mailto:comercial@tailorspace.com.br" className="text-brand-500 hover:text-brand-400 transition-colors">comercial@tailorspace.com.br</a>

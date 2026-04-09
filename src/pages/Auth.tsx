@@ -69,7 +69,7 @@ export default function AuthPage() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="flex justify-center">
-          <Building2 className="w-12 h-12 text-brand-500" />
+          <img src="/logo.png" alt="Tailorspace" className="w-16 h-16 mx-auto object-contain" />
         </motion.div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
           {isForgotPassword ? 'Recuperar Senha' : isLogin ? 'Acesse o seu Portal' : 'Crie sua conta TailorSpace'}

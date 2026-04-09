@@ -44,7 +44,7 @@ export default function BrokerClassPage() {
       <nav className="fixed w-full z-50 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 group hover:opacity-80 transition-opacity">
-            <Building2 className="w-7 h-7 md:w-8 md:h-8 text-brand-500 group-hover:text-brand-400 transition-colors shrink-0" />
+            <img src="/logo.png" alt="Tailorspace" className="w-8 h-8 md:w-10 md:h-10 object-contain group-hover:opacity-90 transition-opacity shrink-0" />
             <span className="text-lg md:text-xl font-bold tracking-tight text-white">
               Tailor<span className="text-brand-500 group-hover:text-brand-400 transition-colors">Space</span>
             </span>
