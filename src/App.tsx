@@ -339,6 +339,7 @@ export default function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/aulas" element={<BrokerClassPage />} />
         <Route path="/proprietario" element={<OwnerLandingPage />} />
+        <Route path="/proprietarios" element={<OwnerLandingPage />} />
       </Routes>
       <a 
         href="https://wa.me/5511993725876" 
