@@ -36,14 +36,11 @@ export default function OwnerLandingPage() {
       .insert([{ 
         name: name.trim(), 
         email: email.trim().toLowerCase(), 
+        whatsapp: whatsapp.trim(),
+        region: region.trim(),
+        stage: stage,
         source: 'proprietario_qualificado' 
-        // We can add metadata or a generic text field to leads later, but for now we'll just save the lead 
-        // IF schema doesn't have whatsapp/region/stage natively, this will just use the standard fields and drop the rest unless we mapped them or use JSON. 
-        // Assuming current schema only has name/email/source mostly. Let's just track the fact they submitted.
       }]);
-      
-    // Note: Assuming a simple leads table. Full schema updates are out of scope unless errors occur. 
-    // Ideally leads should have a `metadata` JSONB column. 
       
     setLoading(false);
     if (error) {
