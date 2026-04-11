@@ -42,6 +42,11 @@ export default function OwnerLandingPage() {
       setFormError('Ocorreu um erro técnico. Tente novamente.');
       console.error('Supabase error:', error);
     } else {
+      // Dispara o Evento de Conversão no Pixel (Lead)
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'Lead');
+      }
+
       const text = encodeURIComponent(`Olá, vi a página da FTS. Meu nome é ${name.trim()} e ${
         stage === 'contrapiso' ? 'sou proprietário de um Studio no contrapiso' : 'tenho interesse na gestão do ativo'
       }. Gostaria de falar com um Assessor Executivo.`);
