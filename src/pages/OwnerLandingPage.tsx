@@ -76,7 +76,7 @@ export default function OwnerLandingPage() {
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-slate-900">
-            Mobílie Seu Imóvel Novo Sem Colocar a Mão no Bolso e <span className="text-brand-500">Alugue 3x Mais Rápido</span>.
+            Mobílie Seu Imóvel Novo ou Usado Sem Colocar a Mão no Bolso e <span className="text-brand-500">Alugue 3x Mais Rápido</span>.
           </h1>
           
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed">
