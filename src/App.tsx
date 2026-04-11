@@ -7,6 +7,7 @@ import AuthPage from './pages/Auth';
 import DashboardPage from './pages/Dashboard';
 import BrokerClassPage from './pages/BrokerClassPage';
 import OwnerLandingPage from './pages/OwnerLandingPage';
+import AdvisoryPage from './pages/AdvisoryPage';
 
 function LandingPage() {
   return (
@@ -343,6 +344,7 @@ export default function App() {
         <Route path="/aulas" element={<BrokerClassPage />} />
         <Route path="/proprietario" element={<OwnerLandingPage />} />
         <Route path="/proprietarios" element={<OwnerLandingPage />} />
+        <Route path="/consultoriabts" element={<AdvisoryPage />} />
       </Routes>
       <a 
         href="https://wa.me/5511993725876" 
