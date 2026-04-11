@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Search, Cpu, Key, FileText, Quote } from 'lucide-react';
@@ -330,6 +331,8 @@ function PricingPage() {
 }
 
 export default function App() {
+  const [showLgpd, setShowLgpd] = useState(true);
+
   return (
     <Router>
       <Routes>
@@ -352,6 +355,21 @@ export default function App() {
           <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
         </svg>
       </a>
+
+      {/* LGPD Banner Global */}
+      {showLgpd && (
+        <div id="lgpd-banner" className="fixed bottom-0 left-0 w-full bg-slate-900 border-t border-slate-700 text-slate-300 py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center z-50 shadow-2xl">
+          <div className="text-xs md:text-sm text-left mb-4 md:mb-0 max-w-4xl">
+            <strong className="text-white">Aviso de Privacidade e LGPD:</strong> Utilizamos cookies e tecnologias de rastreamento para inteligência de dados, segurança da operação e para melhorar a sua experiência em nosso portal, conforme as diretrizes da Lei Geral de Proteção de Dados (Lei nº 13.709/2018). Ao continuar a navegação, você concorda com nossa Política de Privacidade.
+          </div>
+          <button 
+            onClick={() => setShowLgpd(false)} 
+            className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-6 rounded transition-colors whitespace-nowrap"
+          >
+            Compreendo e Aceito
+          </button>
+        </div>
+      )}
     </Router>
   );
 }
