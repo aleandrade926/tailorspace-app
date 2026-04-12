@@ -115,6 +115,15 @@ export default function OwnerLandingPage() {
               <p className="text-sm text-slate-600 leading-relaxed">Imóveis "no osso" encalham. Studios da TailorSpace têm fila de inquilinos premium já aprovados.</p>
             </div>
           </div>
+          
+          {/* Institutional Positioning / Compliance */}
+          <div className="max-w-3xl mx-auto bg-slate-900 text-slate-100 p-8 rounded-2xl mb-16 shadow-2xl relative overflow-hidden text-left">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-3xl"></div>
+            <h3 className="text-xl font-bold mb-4 font-serif text-white">Nossa Natureza Operacional</h3>
+            <p className="text-sm text-slate-300 leading-relaxed font-light">
+              Nossa operação <strong className="text-white font-semibold">não atua sob o arranjo de uma imobiliária tradicional</strong>. A TailorSpace é formada por uma <strong className="text-white font-semibold">Equipe Multidisciplinar</strong> — abrangendo as áreas Jurídica, Tecnológica e de experientes <em>Brokers</em>. Nosso foco é exclusivamente voltado para a <strong className="text-white font-semibold">preparação inteligente e reestruturação do seu ativo</strong> para que ele alcance hiperliquidez e a maior rentabilidade possível neste novo mercado.
+            </p>
+          </div>
         </div>
       </section>
 
