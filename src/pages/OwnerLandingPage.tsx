@@ -121,7 +121,7 @@ export default function OwnerLandingPage() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-3xl"></div>
             <h3 className="text-xl font-bold mb-4 font-serif text-white">Nossa Natureza Operacional</h3>
             <p className="text-sm text-slate-300 leading-relaxed font-light">
-              Nossa operação <strong className="text-white font-semibold">não atua sob o arranjo de uma imobiliária tradicional</strong>. A TailorSpace é formada por uma <strong className="text-white font-semibold">Equipe Multidisciplinar</strong> — abrangendo as áreas Jurídica, Tecnológica e de experientes <em>Brokers</em>. Nosso foco é exclusivamente voltado para a <strong className="text-white font-semibold">preparação inteligente e reestruturação do seu ativo</strong> para que ele alcance hiperliquidez e a maior rentabilidade possível neste novo mercado.
+              Nossa operação <strong className="text-white font-semibold">não atua sob o formato de uma imobiliária</strong>. A TailorSpace é formada por uma <strong className="text-white font-semibold">Equipe Multidisciplinar</strong> — abrangendo as áreas Jurídica, Tecnológica e de experientes <em>Brokers</em>. Nosso foco é exclusivamente voltado para a <strong className="text-white font-semibold">preparação inteligente e reestruturação do seu ativo</strong> para que ele alcance hiperliquidez e a maior rentabilidade possível neste novo mercado.
             </p>
           </div>
         </div>
