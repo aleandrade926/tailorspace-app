@@ -76,7 +76,7 @@ export default function OwnerLandingPage() {
           </h1>
           
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed">
-            A Valorização de um Imóvel Decorado, Sem o Custo e a Dor de Cabeça da Marcenaria. Entregamos seu ativo formatado usando o modelo de transformação de CAPEX em OPEX.
+            Você pode ter o seu imóvel valorizado com a customização feita pelo inquilino na primeira locação, e depois o seu ativo que estava parado estará disponível para a locação <em>short</em> ou <em>long stay</em> sem nenhum custo para o proprietário.
           </p>
 
           {/* VSL Video */}
