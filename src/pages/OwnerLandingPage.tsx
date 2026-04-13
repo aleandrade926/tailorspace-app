@@ -18,6 +18,7 @@ export default function OwnerLandingPage() {
   
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -168,7 +169,12 @@ export default function OwnerLandingPage() {
         <div className="grid md:grid-cols-3 gap-4 items-center mb-6">
           {/* Imóvel sem acabamento */}
           <div className="bg-slate-100 rounded-3xl overflow-hidden text-left border-2 border-slate-200">
-            <img src="/antes-sem-acabamento.jpg" alt="Imóvel sem acabamento" className="w-full h-48 object-cover grayscale opacity-80" />
+            <button onClick={() => setLightboxSrc('/antes-sem-acabamento.jpg')} className="w-full relative group cursor-zoom-in">
+              <img src="/antes-sem-acabamento.jpg" alt="Imóvel sem acabamento" className="w-full h-48 object-cover grayscale opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
+              </div>
+            </button>
             <div className="p-6">
               <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Imóvel sem acabamento</p>
               <p className="text-4xl font-extrabold text-slate-500 mb-1">R$ 3.700</p>
@@ -194,7 +200,12 @@ export default function OwnerLandingPage() {
 
           {/* Imóvel com tapa */}
           <div className="bg-white rounded-3xl overflow-hidden text-left border-2 border-brand-400 shadow-xl">
-            <img src="/depois-com-tapa.jpg" alt="Imóvel com tapa FTS" className="w-full h-48 object-cover" />
+            <button onClick={() => setLightboxSrc('/depois-com-tapa.jpg')} className="w-full relative group cursor-zoom-in">
+              <img src="/depois-com-tapa.jpg" alt="Imóvel com tapa FTS" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
+              </div>
+            </button>
             <div className="p-6">
               <p className="text-xs font-bold uppercase tracking-widest text-brand-500 mb-3">Com tapa FTS</p>
               <p className="text-4xl font-extrabold text-brand-600 mb-1">R$ 5.000</p>
@@ -289,6 +300,27 @@ export default function OwnerLandingPage() {
         <p className="text-slate-500 text-xs">© 2026 TailorSpace. Operação Exclusiva de Aceleração de Ativos.</p>
         <p className="text-slate-400 text-[10px] mt-2">Este site não faz parte do Facebook. Disclaimer: Resultados variam conforme a região do imóvel.</p>
       </footer>
+    </div>
+
+      {/* Lightbox */}
+      {lightboxSrc && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setLightboxSrc(null)}
+        >
+          <button
+            onClick={() => setLightboxSrc(null)}
+            className="absolute top-4 right-4 text-white bg-white/20 hover:bg-white/40 rounded-full w-10 h-10 flex items-center justify-center text-xl font-bold transition-colors"
+          >✕</button>
+          <img
+            src={lightboxSrc}
+            alt="Imóvel ampliado"
+            className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <p className="absolute bottom-4 text-white/50 text-xs">Fonte: QuintoAndar (anúncio público de locação)</p>
+        </div>
+      )}
     </div>
   );
 }
