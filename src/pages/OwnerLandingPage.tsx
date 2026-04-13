@@ -4,7 +4,11 @@ import {
   ShieldCheck,
   Cpu,
   FileText,
-  Lock
+  Lock,
+  Wallet,
+  Clock,
+  CheckCircle,
+  Quote
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -94,7 +98,39 @@ export default function OwnerLandingPage() {
             ></iframe>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-16 text-left border-y border-slate-200 py-12">
+          {/* Infográfico 3 Passos - Versão Pro */}
+          <div className="mb-20">
+            <h3 className="text-2xl md:text-3xl font-extrabold mb-10 text-slate-900 text-center">Como a Engenharia FTS Funciona</h3>
+            <div className="relative grid md:grid-cols-3 gap-8 text-left">
+              <div className="hidden md:block absolute top-1/2 left-[25%] right-[25%] h-0.5 bg-brand-100 -translate-y-1/2 z-0"></div>
+
+              <div className="bg-white p-8 rounded-3xl border border-slate-200 relative z-10 shadow-md hover:shadow-xl transition-shadow group">
+                <div className="w-12 h-12 rounded-2xl bg-brand-500 text-white flex items-center justify-center font-bold text-xl mb-6 shadow-lg group-hover:scale-110 transition-transform">1</div>
+                <h4 className="font-bold text-slate-900 mb-4 text-xl flex items-center gap-2">
+                  <Wallet className="w-5 h-5 text-brand-500" /> Capital Externo
+                </h4>
+                <p className="text-slate-600 leading-relaxed text-sm">Captamos o <strong>Inquilino B2B</strong> que já possui o capital para investir na personalização total do seu imóvel.</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-3xl border border-slate-200 relative z-10 shadow-md hover:shadow-xl transition-shadow group">
+                <div className="w-12 h-12 rounded-2xl bg-brand-500 text-white flex items-center justify-center font-bold text-xl mb-6 shadow-lg group-hover:scale-110 transition-transform">2</div>
+                <h4 className="font-bold text-slate-900 mb-4 text-xl flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-brand-500" /> Carência Inteligente
+                </h4>
+                <p className="text-slate-600 leading-relaxed text-sm">O investimento do inquilino é compensado via desconto no aluguel. Você <strong>não desembolsa capital próprio</strong> para a obra.</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-3xl border border-slate-200 relative z-10 shadow-md hover:shadow-xl transition-shadow group">
+                <div className="w-12 h-12 rounded-2xl bg-brand-500 text-white flex items-center justify-center font-bold text-xl mb-6 shadow-lg group-hover:scale-110 transition-transform">3</div>
+                <h4 className="font-bold text-slate-900 mb-4 text-xl flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-brand-500" /> Ativo Formado
+                </h4>
+                <p className="text-slate-600 leading-relaxed text-sm">Após o período de compensação, você herda um <strong>imóvel 100% mobiliado e pronto</strong> para render no mercado hoteleiro.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-16 text-left border-t border-slate-200 pt-12">
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <FileText className="w-8 h-8 text-brand-500 mb-4" />
               <h3 className="text-lg font-bold mb-2 text-slate-900">Jurídico Blindado</h3>
@@ -119,6 +155,27 @@ export default function OwnerLandingPage() {
             <p className="text-sm text-slate-300 leading-relaxed font-light">
               Nossa operação <strong className="text-white font-semibold">não atua sob o formato de uma imobiliária</strong>. A TailorSpace é formada por uma <strong className="text-white font-semibold">Equipe Multidisciplinar</strong> — abrangendo as áreas Jurídica, Tecnológica, Design e Decoração, e experientes <em>Brokers</em>. Nosso foco é exclusivamente voltado para a <strong className="text-white font-semibold">preparação inteligente e reestruturação do seu ativo</strong> para que ele alcance hiperliquidez e a maior rentabilidade possível neste novo mercado.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Modelo Validado - Versão Pro */}
+      <section className="px-4 md:px-6 mb-16 relative z-10 text-center max-w-4xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-extrabold mb-8 text-slate-900 tracking-tight">O Modelo Validado Pelo Mercado Real</h2>
+        <div className="bg-white p-8 md:p-10 rounded-3xl border border-slate-200 shadow-lg text-left flex flex-col md:flex-row gap-8 items-center">
+          <div className="flex-1">
+            <div className="inline-flex items-center justify-center py-1 px-3 rounded text-xs font-bold bg-green-100 text-green-800 mb-4 uppercase tracking-wider">Estudo Estrutural</div>
+            <h3 className="font-bold text-slate-900 text-xl mb-3">Da Vacância Absoluta ao Contrato Assinado Sem Desembolso</h3>
+            <p className="text-slate-600 leading-relaxed mb-6 font-medium">Nossa arquitetura de aceleração mapeia o ativo, desenha um projeto otimizado focando no hóspede Premium e orquestra as cláusulas para que a <span className="text-brand-600 font-bold">obra seja paga pelo caixa primário do Inquilino B2B</span>. Seu imóvel que gerava IPTU negativo vira uma máquina pujante e mobiliada do dia para a noite.</p>
+            <div className="flex items-center gap-2 border-t border-slate-100 pt-4">
+              <Quote className="w-5 h-5 text-brand-300" />
+              <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold flex-1">Aprovado pelo Núcleo de Advisory Jurídica e Fiscal</p>
+            </div>
+          </div>
+          <div className="shrink-0 hidden md:block">
+            <div className="w-32 h-32 rounded-full bg-slate-50 border-4 border-white shadow-xl flex items-center justify-center">
+              <ShieldCheck className="w-16 h-16 text-brand-400" />
+            </div>
           </div>
         </div>
       </section>
