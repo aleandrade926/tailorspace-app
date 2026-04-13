@@ -300,7 +300,6 @@ export default function OwnerLandingPage() {
         <p className="text-slate-500 text-xs">© 2026 TailorSpace. Operação Exclusiva de Aceleração de Ativos.</p>
         <p className="text-slate-400 text-[10px] mt-2">Este site não faz parte do Facebook. Disclaimer: Resultados variam conforme a região do imóvel.</p>
       </footer>
-    </div>
 
       {/* Lightbox */}
       {lightboxSrc && (
