@@ -161,25 +161,50 @@ export default function OwnerLandingPage() {
         </div>
       </section>
 
-      {/* Modelo Validado - Versão Pro */}
-      <section className="px-4 md:px-6 mb-16 relative z-10 text-center max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-extrabold mb-8 text-slate-900 tracking-tight">O Modelo Validado Pelo Mercado Real</h2>
-        <div className="bg-white p-8 md:p-10 rounded-3xl border border-slate-200 shadow-lg text-left flex flex-col md:flex-row gap-8 items-center">
-          <div className="flex-1">
-            <div className="inline-flex items-center justify-center py-1 px-3 rounded text-xs font-bold bg-green-100 text-green-800 mb-4 uppercase tracking-wider">Estudo Estrutural</div>
-            <h3 className="font-bold text-slate-900 text-xl mb-3">Da Vacância Absoluta ao Contrato Assinado Sem Desembolso</h3>
-            <p className="text-slate-600 leading-relaxed mb-6 font-medium">Nossa arquitetura de aceleração mapeia o ativo, desenha um projeto otimizado focando no hóspede Premium e orquestra as cláusulas para que a <span className="text-brand-600 font-bold">obra seja paga pelo caixa primário do Inquilino B2B</span>. Seu imóvel que gerava IPTU negativo vira uma máquina pujante e mobiliada do dia para a noite.</p>
-            <div className="flex items-center gap-2 border-t border-slate-100 pt-4">
-              <Quote className="w-5 h-5 text-brand-300" />
-              <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold flex-1">Aprovado pelo Núcleo de Advisory Jurídica e Fiscal</p>
+      {/* Prova de Mercado Real */}
+      <section className="px-4 md:px-6 mb-16 relative z-10 max-w-4xl mx-auto text-center">
+        <h2 className="text-2xl md:text-3xl font-extrabold mb-3 text-slate-900 tracking-tight">O Mercado Já Prova: A Apresentação Vale Mais que o Imóvel</h2>
+        <p className="text-slate-500 text-sm mb-10">Mesmo prédio. Mesma planta. Dois apartamentos de 80m², 2 quartos, sem vaga.</p>
+
+        <div className="grid md:grid-cols-3 gap-4 items-center mb-6">
+          {/* Imóvel sem acabamento */}
+          <div className="bg-slate-100 rounded-3xl p-8 text-left border-2 border-slate-200">
+            <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Imóvel sem acabamento</p>
+            <p className="text-4xl font-extrabold text-slate-500 mb-1">R$ 3.700</p>
+            <p className="text-slate-400 text-sm mb-6">/mês</p>
+            <ul className="space-y-2 text-sm text-slate-500">
+              <li>✗ Piso de taco antigo</li>
+              <li>✗ Paredes nuas</li>
+              <li>✗ Sem cortinas ou luminárias</li>
+              <li>✗ Parado há meses</li>
+            </ul>
+          </div>
+
+          {/* Diferença */}
+          <div className="flex flex-col items-center justify-center py-6">
+            <div className="bg-brand-500 text-white rounded-2xl px-6 py-4 shadow-xl text-center">
+              <p className="text-xs font-bold uppercase tracking-widest mb-1 opacity-80">Diferença</p>
+              <p className="text-3xl font-extrabold">+R$ 1.300</p>
+              <p className="text-sm opacity-80">por mês</p>
+              <p className="text-xs mt-2 opacity-70">+R$ 15.600 / ano</p>
             </div>
           </div>
-          <div className="shrink-0 hidden md:block">
-            <div className="w-32 h-32 rounded-full bg-slate-50 border-4 border-white shadow-xl flex items-center justify-center">
-              <ShieldCheck className="w-16 h-16 text-brand-400" />
-            </div>
+
+          {/* Imóvel com tapa */}
+          <div className="bg-white rounded-3xl p-8 text-left border-2 border-brand-400 shadow-xl">
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-500 mb-4">Com tapa FTS</p>
+            <p className="text-4xl font-extrabold text-brand-600 mb-1">R$ 5.000</p>
+            <p className="text-slate-400 text-sm mb-6">/mês</p>
+            <ul className="space-y-2 text-sm text-slate-600">
+              <li>✓ Piso novo, paredes pintadas</li>
+              <li>✓ Iluminação e cortinas</li>
+              <li>✓ Mobiliário selecionado</li>
+              <li>✓ Alugado rapidamente</li>
+            </ul>
           </div>
         </div>
+
+        <p className="text-xs text-slate-400 italic">Comparativo baseado em anúncios públicos de locação no mesmo empreendimento em São Paulo.</p>
       </section>
 
       {/* Qualification Funnel */}
