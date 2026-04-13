@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   ArrowRight,
   ShieldCheck,
@@ -98,7 +98,7 @@ export default function OwnerLandingPage() {
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <FileText className="w-8 h-8 text-brand-500 mb-4" />
               <h3 className="text-lg font-bold mb-2 text-slate-900">Jurídico Blindado</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">Operação arquitetada através do Instituto da Carência, garantindo zero risco trabalhista ou tributário indevido.</p>
+              <p className="text-sm text-slate-600 leading-relaxed">Contratos atípicos que garantem a <strong className="text-slate-800">Reforma com Custo Zero</strong> para o proprietário, com total segurança tributária e irreversibilidade patrimonial.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <Cpu className="w-8 h-8 text-brand-500 mb-4" />
