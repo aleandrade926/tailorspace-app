@@ -7,8 +7,7 @@ import {
   Lock,
   Wallet,
   Clock,
-  CheckCircle,
-  Quote
+  CheckCircle
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
