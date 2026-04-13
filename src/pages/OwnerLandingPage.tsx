@@ -52,7 +52,9 @@ export default function OwnerLandingPage() {
       }
 
       const text = encodeURIComponent(`Olá, vi a página da FTS. Meu nome é ${name.trim()} e ${
-        stage === 'contrapiso' ? 'sou proprietário de um Studio no contrapiso' : 'tenho interesse na gestão do ativo'
+        stage === 'contrapiso' 
+          ? 'sou proprietário de Studio ou apartamento no contrapiso ou sem acabamento e preciso de mobília' 
+          : 'tenho um apartamento antigo que precisa de um tapa para voltar a alugar'
       }. Gostaria de falar com um Assessor Executivo.`);
       window.location.href = `https://wa.me/5511993725876?text=${text}`;
     }
@@ -139,7 +141,7 @@ export default function OwnerLandingPage() {
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <Cpu className="w-8 h-8 text-brand-500 mb-4" />
               <h3 className="text-lg font-bold mb-2 text-slate-900">Operacional FTS</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">Orquestramos projetos e equipe de marcenaria de ponta. A curva de tempo de adequação cai pela metade.</p>
+              <p className="text-sm text-slate-600 leading-relaxed">Cuidamos de tudo: seleção e instalação de móveis, armários, luminárias e cortinas. Seu imóvel sai do osso para o mercado em tempo recorde.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <ShieldCheck className="w-8 h-8 text-brand-500 mb-4" />
@@ -227,8 +229,8 @@ export default function OwnerLandingPage() {
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 outline-none transition-all appearance-none"
                 >
                   <option value="" disabled>Selecione uma opção...</option>
-                  <option value="contrapiso">Sou proprietário de Studio no contrapiso</option>
-                  <option value="gestao">Tenho interesse na gestão do ativo</option>
+                  <option value="contrapiso">Sou proprietário de Studio ou apartamento no contrapiso ou sem acabamento (precisa de mobília)</option>
+                  <option value="retrofit">Tenho apartamento antigo que precisa de um tapa para alugar</option>
                 </select>
               </div>
               
