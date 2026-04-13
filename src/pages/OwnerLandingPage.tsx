@@ -185,9 +185,9 @@ export default function OwnerLandingPage() {
         <div className="max-w-2xl mx-auto">
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-xl">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-slate-900">Análise de Compatibilidade</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-slate-900">Fale com um Especialista em Direito Imobiliário e FTS</h2>
               <p className="text-slate-600 text-sm">
-                Antes de alocar o tempo de um Assessor Executivo para um estudo de viabilidade gratuito do seu ativo, preencha os 3 campos abaixo:
+                Preencha apenas 3 campos e seja conectado imediatamente via WhatsApp à nossa equipe de experts na área jurídica do mercado imobiliário e corporativo.
               </p>
             </div>
             
@@ -246,7 +246,7 @@ export default function OwnerLandingPage() {
                 {loading ? 'Redirecionando...' : <>QUERO ENTENDER MELHOR FALANDO COM UM PROFISSIONAL <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /></>}
               </button>
               <p className="text-center text-xs text-slate-500 mt-4 flex items-center justify-center gap-1">
-                <Lock className="w-3.5 h-3.5" /> Informações seguras. Fale diretamente com humanos.
+                <Lock className="w-3.5 h-3.5" /> Conversa gratuita e sem compromisso · Equipe com experiência em Consultoria Jurídica e Fiscal no mercado imobiliário privado e corporativo.
               </p>
             </form>
           </div>
