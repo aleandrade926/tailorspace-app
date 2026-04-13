@@ -170,7 +170,7 @@ export default function OwnerLandingPage() {
           {/* Imóvel sem acabamento */}
           <div className="bg-slate-100 rounded-3xl overflow-hidden text-left border-2 border-slate-200">
             <button onClick={() => setLightboxSrc('/antes-sem-acabamento.jpg')} className="w-full relative group cursor-zoom-in">
-              <img src="/antes-sem-acabamento.jpg" alt="Imóvel sem acabamento" className="w-full h-48 object-cover grayscale opacity-80 group-hover:opacity-100 transition-opacity" />
+              <img src="/antes-sem-acabamento.jpg" alt="Imóvel sem acabamento" loading="lazy" decoding="async" className="w-full h-48 object-cover grayscale opacity-80 group-hover:opacity-100 transition-opacity" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
               </div>
@@ -201,7 +201,7 @@ export default function OwnerLandingPage() {
           {/* Imóvel com tapa */}
           <div className="bg-white rounded-3xl overflow-hidden text-left border-2 border-brand-400 shadow-xl">
             <button onClick={() => setLightboxSrc('/depois-com-tapa.jpg')} className="w-full relative group cursor-zoom-in">
-              <img src="/depois-com-tapa.jpg" alt="Imóvel com tapa FTS" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src="/depois-com-tapa.jpg" alt="Imóvel com tapa FTS" loading="lazy" decoding="async" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
               </div>
