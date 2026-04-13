@@ -184,9 +184,9 @@ export default function OwnerLandingPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full mt-6 bg-brand-500 hover:bg-brand-600 disabled:opacity-60 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-lg"
+                className="w-full mt-6 bg-brand-500 hover:bg-brand-600 disabled:opacity-60 text-white font-bold py-4 px-3 sm:px-6 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base lg:text-lg text-center"
               >
-                {loading ? 'Redirecionando...' : <>Solicitar Análise com Especialista <ArrowRight className="w-5 h-5" /></>}
+                {loading ? 'Redirecionando...' : <>QUERO ENTENDER MELHOR FALANDO COM UM PROFISSIONAL <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /></>}
               </button>
               <p className="text-center text-xs text-slate-500 mt-4 flex items-center justify-center gap-1">
                 <Lock className="w-3.5 h-3.5" /> Informações seguras. Fale diretamente com humanos.
