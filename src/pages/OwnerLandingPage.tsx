@@ -167,16 +167,19 @@ export default function OwnerLandingPage() {
 
         <div className="grid md:grid-cols-3 gap-4 items-center mb-6">
           {/* Imóvel sem acabamento */}
-          <div className="bg-slate-100 rounded-3xl p-8 text-left border-2 border-slate-200">
-            <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Imóvel sem acabamento</p>
-            <p className="text-4xl font-extrabold text-slate-500 mb-1">R$ 3.700</p>
-            <p className="text-slate-400 text-sm mb-6">/mês</p>
-            <ul className="space-y-2 text-sm text-slate-500">
-              <li>✗ Piso de taco antigo</li>
-              <li>✗ Paredes nuas</li>
-              <li>✗ Sem cortinas ou luminárias</li>
-              <li>✗ Parado há meses</li>
-            </ul>
+          <div className="bg-slate-100 rounded-3xl overflow-hidden text-left border-2 border-slate-200">
+            <img src="/antes-sem-acabamento.jpg" alt="Imóvel sem acabamento" className="w-full h-48 object-cover grayscale opacity-80" />
+            <div className="p-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Imóvel sem acabamento</p>
+              <p className="text-4xl font-extrabold text-slate-500 mb-1">R$ 3.700</p>
+              <p className="text-slate-400 text-sm mb-4">/mês</p>
+              <ul className="space-y-1.5 text-sm text-slate-500">
+                <li>✗ Piso de taco antigo</li>
+                <li>✗ Paredes nuas</li>
+                <li>✗ Sem cortinas ou luminárias</li>
+                <li>✗ Parado há meses</li>
+              </ul>
+            </div>
           </div>
 
           {/* Diferença */}
@@ -190,16 +193,19 @@ export default function OwnerLandingPage() {
           </div>
 
           {/* Imóvel com tapa */}
-          <div className="bg-white rounded-3xl p-8 text-left border-2 border-brand-400 shadow-xl">
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-500 mb-4">Com tapa FTS</p>
-            <p className="text-4xl font-extrabold text-brand-600 mb-1">R$ 5.000</p>
-            <p className="text-slate-400 text-sm mb-6">/mês</p>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>✓ Piso novo, paredes pintadas</li>
-              <li>✓ Iluminação e cortinas</li>
-              <li>✓ Mobiliário selecionado</li>
-              <li>✓ Alugado rapidamente</li>
-            </ul>
+          <div className="bg-white rounded-3xl overflow-hidden text-left border-2 border-brand-400 shadow-xl">
+            <img src="/depois-com-tapa.jpg" alt="Imóvel com tapa FTS" className="w-full h-48 object-cover" />
+            <div className="p-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-500 mb-3">Com tapa FTS</p>
+              <p className="text-4xl font-extrabold text-brand-600 mb-1">R$ 5.000</p>
+              <p className="text-slate-400 text-sm mb-4">/mês</p>
+              <ul className="space-y-1.5 text-sm text-slate-600">
+                <li>✓ Piso novo, paredes pintadas</li>
+                <li>✓ Iluminação e cortinas</li>
+                <li>✓ Mobiliário selecionado</li>
+                <li>✓ Alugado rapidamente</li>
+              </ul>
+            </div>
           </div>
         </div>
 
