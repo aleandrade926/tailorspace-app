@@ -62,7 +62,7 @@ export default function OwnerLandingPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-brand-500/30 pb-20">
-      {/* Top Bar Minimalista */}
+      {/* Top Bar */}
       <nav className="w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 py-6">
         <div className="max-w-4xl mx-auto px-4 md:px-6 flex justify-center">
           <div className="flex items-center gap-2">
@@ -74,33 +74,125 @@ export default function OwnerLandingPage() {
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* 1. PROMESSA — Headline */}
       <section className="pt-12 md:pt-16 pb-12 px-4 md:px-6 relative">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-slate-900">
             Pare de Perder Dinheiro com Imóvel Vazio: Mobilie com o Capital do Próprio Inquilino e <span className="text-brand-500">Alugue 3x Mais Rápido</span>.
           </h1>
-          
-          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Você pode ter o seu imóvel valorizado com a customização feita pelo inquilino na primeira locação, e depois o seu ativo que estava parado estará disponível para a locação <em>short</em> ou <em>long stay</em> sem nenhum custo para o proprietário.
+          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-0 leading-relaxed">
+            Você pode ter o seu imóvel valorizado com a customização feita pelo inquilino na primeira locação, e depois o seu ativo estará disponível para locação <em>short</em> ou <em>long stay</em> sem nenhum custo para o proprietário.
           </p>
+        </div>
+      </section>
+
+      {/* 2. PROVA — Comparação de Mercado Real */}
+      <section className="px-4 md:px-6 mb-16 relative z-10 max-w-4xl mx-auto text-center">
+        <h2 className="text-2xl md:text-3xl font-extrabold mb-3 text-slate-900 tracking-tight">O Mercado Já Prova: A Apresentação Vale Mais que o Imóvel</h2>
+        <p className="text-slate-500 text-sm mb-10">Mesmo prédio. Mesma planta. Dois apartamentos de 80m², 2 quartos, sem vaga.</p>
+
+        <div className="grid md:grid-cols-3 gap-4 items-center mb-6">
+          <div className="bg-slate-100 rounded-3xl overflow-hidden text-left border-2 border-slate-200">
+            <button onClick={() => setLightboxSrc('/antes-sem-acabamento.jpg')} className="w-full relative group cursor-zoom-in">
+              <img src="/antes-sem-acabamento.jpg" alt="Imóvel sem acabamento" loading="lazy" decoding="async" className="w-full h-48 object-cover grayscale opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
+              </div>
+            </button>
+            <div className="p-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Imóvel sem acabamento</p>
+              <p className="text-4xl font-extrabold text-slate-500 mb-1">R$ 3.700</p>
+              <p className="text-slate-400 text-sm mb-4">/mês</p>
+              <ul className="space-y-1.5 text-sm text-slate-500">
+                <li>✗ Piso de taco antigo</li>
+                <li>✗ Paredes nuas</li>
+                <li>✗ Sem cortinas ou luminárias</li>
+                <li>✗ Parado há meses</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center py-6">
+            <div className="bg-brand-500 text-white rounded-2xl px-6 py-4 shadow-xl text-center">
+              <p className="text-xs font-bold uppercase tracking-widest mb-1 opacity-80">Diferença</p>
+              <p className="text-3xl font-extrabold">+R$ 1.300</p>
+              <p className="text-sm opacity-80">por mês</p>
+              <p className="text-xs mt-2 opacity-70">+R$ 15.600 / ano</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl overflow-hidden text-left border-2 border-brand-400 shadow-xl">
+            <button onClick={() => setLightboxSrc('/depois-com-tapa.jpg')} className="w-full relative group cursor-zoom-in">
+              <img src="/depois-com-tapa.jpg" alt="Imóvel com tapa FTS" loading="lazy" decoding="async" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
+              </div>
+            </button>
+            <div className="p-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-500 mb-3">Com tapa FTS</p>
+              <p className="text-4xl font-extrabold text-brand-600 mb-1">R$ 5.000</p>
+              <p className="text-slate-400 text-sm mb-4">/mês</p>
+              <ul className="space-y-1.5 text-sm text-slate-600">
+                <li>✓ Piso novo, paredes pintadas</li>
+                <li>✓ Iluminação e cortinas</li>
+                <li>✓ Mobiliário selecionado</li>
+                <li>✓ Alugado rapidamente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p className="text-xs text-slate-400 italic">Comparativo baseado em anúncios públicos de locação no mesmo empreendimento em São Paulo.</p>
+      </section>
+
+      {/* 3. HISTÓRIA — Storytelling "O Custo Oculto" */}
+      <section className="px-4 md:px-6 mb-16 relative z-10 max-w-3xl mx-auto">
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-lg p-8 md:p-12 text-left">
+          <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-8">
+            ⚠ O erro que a maioria dos investidores comete
+          </div>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-6 leading-tight">
+            O Custo Oculto do Imóvel Vazio
+          </h2>
+          <div className="space-y-5 text-slate-600 leading-relaxed">
+            <p>
+              Ter um apartamento desocupado não é apenas deixar de lucrar — é <strong className="text-slate-800">sangrar o seu caixa mês a mês</strong>. IPTU, condomínio e depreciação silenciosa transformam o seu patrimônio em um passivo.
+            </p>
+            <p>
+              Então aparece um inquilino com perfil excelente. Ele propõe carência no aluguel em troca de investir na mobília e no projeto de interiores. E a maioria dos proprietários recusa.
+            </p>
+            <div className="border-l-4 border-brand-500 pl-6 py-2 my-6 bg-brand-50 rounded-r-2xl">
+              <p className="text-slate-800 font-bold text-lg">Esse é o erro mais caro do investidor imobiliário.</p>
+            </div>
+            <p>
+              A carência não é dinheiro deixado na mesa. No modelo <em>Fit to Suit</em>, ela é um <strong className="text-slate-800">investimento no seu próprio ativo, financiado pelo inquilino.</strong> Ele injeta capital físico no seu imóvel — armários planejados, iluminação, acabamento — e você cede o aluguel inicial. Seu patrimônio é permanentemente valorizado sem que você descapitalize um centavo.
+            </p>
+            <p className="text-xl font-bold text-slate-900 border-t border-slate-100 pt-6">
+              O jogo não é dar desconto. <span className="text-brand-500">É trocar carência por patrimônio.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. GANCHO — Como funciona + Vídeo + Cards */}
+      <section className="px-4 md:px-6 pb-12 relative">
+        <div className="max-w-4xl mx-auto">
 
           {/* VSL Video */}
           <div className="w-full max-w-3xl mx-auto bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative aspect-video mb-16">
-            <iframe 
-               width="100%" 
-               height="100%" 
-               src="https://www.youtube.com/embed/kfzVZal1Azs?rel=0&modestbranding=1" 
-               title="Acesso Condicionado" 
-               frameBorder="0" 
-               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-               referrerPolicy="strict-origin-when-cross-origin" 
+            <iframe
+               width="100%"
+               height="100%"
+               src="https://www.youtube.com/embed/kfzVZal1Azs?rel=0&modestbranding=1"
+               title="Acesso Condicionado"
+               frameBorder="0"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerPolicy="strict-origin-when-cross-origin"
                allowFullScreen
                className="absolute top-0 left-0 w-full h-full"
             ></iframe>
           </div>
 
-          {/* Infográfico 3 Passos - Versão Pro */}
+          {/* Infográfico 3 Passos */}
           <div className="mb-20">
             <h3 className="text-2xl md:text-3xl font-extrabold mb-10 text-slate-900 text-center">Como a Engenharia FTS Funciona</h3>
             <div className="relative grid md:grid-cols-3 gap-8 text-left">
@@ -132,6 +224,7 @@ export default function OwnerLandingPage() {
             </div>
           </div>
 
+          {/* Cards de benefícios */}
           <div className="grid md:grid-cols-3 gap-6 mb-16 text-left border-t border-slate-200 pt-12">
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <FileText className="w-8 h-8 text-brand-500 mb-4" />
@@ -149,8 +242,8 @@ export default function OwnerLandingPage() {
               <p className="text-sm text-slate-600 leading-relaxed">Imóveis "no osso" encalham. Studios da TailorSpace têm fila de inquilinos premium já aprovados.</p>
             </div>
           </div>
-          
-          {/* Institutional Positioning / Compliance */}
+
+          {/* Compliance */}
           <div className="max-w-3xl mx-auto bg-slate-900 text-slate-100 p-8 rounded-2xl mb-16 shadow-2xl relative overflow-hidden text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-3xl"></div>
             <h3 className="text-xl font-bold mb-4 font-serif text-white">Nossa Natureza Operacional</h3>
@@ -161,69 +254,7 @@ export default function OwnerLandingPage() {
         </div>
       </section>
 
-      {/* Prova de Mercado Real */}
-      <section className="px-4 md:px-6 mb-16 relative z-10 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-extrabold mb-3 text-slate-900 tracking-tight">O Mercado Já Prova: A Apresentação Vale Mais que o Imóvel</h2>
-        <p className="text-slate-500 text-sm mb-10">Mesmo prédio. Mesma planta. Dois apartamentos de 80m², 2 quartos, sem vaga.</p>
-
-        <div className="grid md:grid-cols-3 gap-4 items-center mb-6">
-          {/* Imóvel sem acabamento */}
-          <div className="bg-slate-100 rounded-3xl overflow-hidden text-left border-2 border-slate-200">
-            <button onClick={() => setLightboxSrc('/antes-sem-acabamento.jpg')} className="w-full relative group cursor-zoom-in">
-              <img src="/antes-sem-acabamento.jpg" alt="Imóvel sem acabamento" loading="lazy" decoding="async" className="w-full h-48 object-cover grayscale opacity-80 group-hover:opacity-100 transition-opacity" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
-              </div>
-            </button>
-            <div className="p-6">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Imóvel sem acabamento</p>
-              <p className="text-4xl font-extrabold text-slate-500 mb-1">R$ 3.700</p>
-              <p className="text-slate-400 text-sm mb-4">/mês</p>
-              <ul className="space-y-1.5 text-sm text-slate-500">
-                <li>✗ Piso de taco antigo</li>
-                <li>✗ Paredes nuas</li>
-                <li>✗ Sem cortinas ou luminárias</li>
-                <li>✗ Parado há meses</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Diferença */}
-          <div className="flex flex-col items-center justify-center py-6">
-            <div className="bg-brand-500 text-white rounded-2xl px-6 py-4 shadow-xl text-center">
-              <p className="text-xs font-bold uppercase tracking-widest mb-1 opacity-80">Diferença</p>
-              <p className="text-3xl font-extrabold">+R$ 1.300</p>
-              <p className="text-sm opacity-80">por mês</p>
-              <p className="text-xs mt-2 opacity-70">+R$ 15.600 / ano</p>
-            </div>
-          </div>
-
-          {/* Imóvel com tapa */}
-          <div className="bg-white rounded-3xl overflow-hidden text-left border-2 border-brand-400 shadow-xl">
-            <button onClick={() => setLightboxSrc('/depois-com-tapa.jpg')} className="w-full relative group cursor-zoom-in">
-              <img src="/depois-com-tapa.jpg" alt="Imóvel com tapa FTS" loading="lazy" decoding="async" className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">🔍 Ampliar</span>
-              </div>
-            </button>
-            <div className="p-6">
-              <p className="text-xs font-bold uppercase tracking-widest text-brand-500 mb-3">Com tapa FTS</p>
-              <p className="text-4xl font-extrabold text-brand-600 mb-1">R$ 5.000</p>
-              <p className="text-slate-400 text-sm mb-4">/mês</p>
-              <ul className="space-y-1.5 text-sm text-slate-600">
-                <li>✓ Piso novo, paredes pintadas</li>
-                <li>✓ Iluminação e cortinas</li>
-                <li>✓ Mobiliário selecionado</li>
-                <li>✓ Alugado rapidamente</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <p className="text-xs text-slate-400 italic">Comparativo baseado em anúncios públicos de locação no mesmo empreendimento em São Paulo.</p>
-      </section>
-
-      {/* Qualification Funnel */}
+      {/* 5. CTA — Formulário */}
       <section className="px-4 md:px-6 relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-xl">
@@ -233,12 +264,12 @@ export default function OwnerLandingPage() {
                 Preencha apenas 3 campos e seja conectado imediatamente via WhatsApp à nossa equipe de experts na área jurídica do mercado imobiliário e corporativo.
               </p>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Nome</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -249,8 +280,8 @@ export default function OwnerLandingPage() {
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">WhatsApp</label>
-                <input 
-                  type="tel" 
+                <input
+                  type="tel"
                   required
                   value={whatsapp}
                   onChange={(e) => setWhatsapp(e.target.value)}
@@ -261,7 +292,7 @@ export default function OwnerLandingPage() {
 
               <div>
                 <label htmlFor="stage" className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Perfil do Imóvel</label>
-                <select 
+                <select
                   id="stage"
                   title="Perfil do Imóvel"
                   required
@@ -274,7 +305,7 @@ export default function OwnerLandingPage() {
                   <option value="retrofit">Tenho apartamento antigo que precisa de um tapa para alugar</option>
                 </select>
               </div>
-              
+
               {formError && (
                 <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm font-medium text-center">
                   {formError}
@@ -295,7 +326,7 @@ export default function OwnerLandingPage() {
           </div>
         </div>
       </section>
-      
+
       <footer className="mt-20 pt-8 border-t border-slate-200 text-center px-4">
         <p className="text-slate-500 text-xs">© 2026 TailorSpace. Operação Exclusiva de Aceleração de Ativos.</p>
         <p className="text-slate-400 text-[10px] mt-2">Este site não faz parte do Facebook. Disclaimer: Resultados variam conforme a região do imóvel.</p>
@@ -322,4 +353,4 @@ export default function OwnerLandingPage() {
       )}
     </div>
   );
-}
+}
