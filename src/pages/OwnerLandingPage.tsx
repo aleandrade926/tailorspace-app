@@ -236,14 +236,14 @@ export default function OwnerLandingPage() {
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Nome Completo</label>
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Nome</label>
                 <input 
                   type="text" 
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 outline-none transition-all"
-                  placeholder="Ex: Carlos Albuquerque"
+                  placeholder="Ex: Carlos"
                 />
               </div>
 
