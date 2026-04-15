@@ -203,7 +203,7 @@ export default function OwnerLandingPage() {
                 <h4 className="font-bold text-slate-900 mb-4 text-xl flex items-center gap-2">
                   <Wallet className="w-5 h-5 text-brand-500" /> Capital Externo
                 </h4>
-                <p className="text-slate-600 leading-relaxed text-sm">Captamos o <strong>Inquilino B2B</strong> que já possui o capital para investir na personalização total do seu imóvel.</p>
+                <p className="text-slate-600 leading-relaxed text-sm">Identificamos o inquilino certo para o seu imóvel e estruturamos o contrato para que a <strong>decoração aconteça sem desembolso seu</strong>.</p>
               </div>
 
               <div className="bg-white p-8 rounded-3xl border border-slate-200 relative z-10 shadow-md hover:shadow-xl transition-shadow group">
