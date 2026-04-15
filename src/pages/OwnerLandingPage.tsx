@@ -233,8 +233,8 @@ export default function OwnerLandingPage() {
             </div>
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <Cpu className="w-8 h-8 text-brand-500 mb-4" />
-              <h3 className="text-lg font-bold mb-2 text-slate-900">Operacional FTS</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">Cuidamos de tudo: seleção e instalação de móveis, armários, luminárias e cortinas. Seu imóvel sai do osso para o mercado em tempo recorde.</p>
+              <h3 className="text-lg font-bold mb-2 text-slate-900">Engenharia FTS</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">Nós unimos as pontas. Garantimos o inquilino certo e o contrato seguro. A obra e a mobília são executadas por nossas empresas parceiras. Transformamos seu imóvel vazio em um ativo de alto padrão, e o seu único trabalho é receber o aluguel.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <ShieldCheck className="w-8 h-8 text-brand-500 mb-4" />
