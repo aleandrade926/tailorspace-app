@@ -219,7 +219,7 @@ export default function OwnerLandingPage() {
                 <h4 className="font-bold text-slate-900 mb-4 text-xl flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-brand-500" /> Ativo Formado
                 </h4>
-                <p className="text-slate-600 leading-relaxed text-sm">Após o período de compensação, você herda um <strong>imóvel 100% mobiliado e pronto</strong> para render no mercado hoteleiro.</p>
+                <p className="text-slate-600 leading-relaxed text-sm">Ao fim da carência, o imóvel é totalmente seu — decorado e valorizado. Pronto para novas locações <strong>long stay</strong> em imobiliárias ou plataformas como QuintoAndar e <strong>short stay</strong> pelo Airbnb e até empresas administradoras de nível hoteleiro, dependendo das características do imóvel e das regras do condomínio.</p>
               </div>
             </div>
           </div>
