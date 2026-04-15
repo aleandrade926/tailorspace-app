@@ -78,7 +78,7 @@ export default function OwnerLandingPage() {
       <section className="pt-12 md:pt-16 pb-12 px-4 md:px-6 relative">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-slate-900">
-            Pare de Perder Dinheiro com Imóvel Vazio: Mobilie com o Capital do Próprio Inquilino e <span className="text-brand-500">Alugue 3x Mais Rápido</span>.
+            Pare de Perder Dinheiro com Imóvel Vazio: Decore com o Capital do Próprio Inquilino e <span className="text-brand-500">Alugue 3x Mais Rápido</span>.
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-0 leading-relaxed">
             Você pode ter o seu imóvel valorizado com a customização feita pelo inquilino na primeira locação, e depois o seu ativo estará disponível para locação <em>short</em> ou <em>long stay</em> sem nenhum custo para o proprietário.
