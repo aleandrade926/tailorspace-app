@@ -203,7 +203,7 @@ export default function OwnerLandingPage() {
                 <h4 className="font-bold text-slate-900 mb-4 text-xl flex items-center gap-2">
                   <Wallet className="w-5 h-5 text-brand-500" /> Capital Externo
                 </h4>
-                <p className="text-slate-600 leading-relaxed text-sm">Identificamos o inquilino certo para o seu imóvel e estruturamos o contrato para que a <strong>decoração aconteça sem desembolso seu</strong>.</p>
+                <p className="text-slate-600 leading-relaxed text-sm">Identificamos o inquilino certo e aplicamos as cláusulas de <strong>carência condicionada e renúncia à indenização</strong>, garantindo a incorporação da decoração ao imóvel sem nenhum desembolso seu.</p>
               </div>
 
               <div className="bg-white p-8 rounded-3xl border border-slate-200 relative z-10 shadow-md hover:shadow-xl transition-shadow group">
