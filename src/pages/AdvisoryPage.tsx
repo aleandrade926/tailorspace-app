@@ -8,7 +8,7 @@ export default function AdvisoryPage() {
     }
     
     // Usa o WhatsApp central do Alexandre (Tudo comigo por enquanto)
-    const text = encodeURIComponent('Olá, vi a página da FTS Advisory. Gostaria de entender o valor da Consultoria Multidisciplinar e solicitar o meu Parecer de Viabilidade Estratégica (PVE).');
+    const text = encodeURIComponent('Olá, acessei o portal da TailorSpace. Gostaria de conversar com a equipe estratégica para avaliar as minhas opções e solicitar uma análise do meu caso.');
     window.location.href = `https://wa.me/5511993725876?text=${text}`;
   };
 

@@ -347,7 +347,7 @@ export default function App() {
         <Route path="/consultoriabts" element={<AdvisoryPage />} />
       </Routes>
       <a 
-        href="https://wa.me/5511993725876" 
+        href={`https://wa.me/5511993725876?text=${encodeURIComponent('Olá, acessei o portal da TailorSpace. Gostaria de conversar com a equipe estratégica para avaliar as minhas opções e solicitar uma análise do meu caso.')}`} 
         target="_blank" 
         rel="noopener noreferrer" 
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 hover:bg-[#20bd5a] transition-all flex items-center justify-center animate-bounce"
