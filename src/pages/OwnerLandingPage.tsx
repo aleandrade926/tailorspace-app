@@ -239,7 +239,7 @@ export default function OwnerLandingPage() {
             <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
               <ShieldCheck className="w-8 h-8 text-brand-500 mb-4" />
               <h3 className="text-lg font-bold mb-2 text-slate-900">Alta Liquidez</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">Imóveis "no osso" encalham. Studios da TailorSpace têm fila de inquilinos premium já aprovados.</p>
+              <p className="text-sm text-slate-600 leading-relaxed">Imóveis sem mobília vazios geram custos todos os dias. Transformamos vacância em rentabilidade ao conectar seu ativo diretamente a inquilinos qualificados, garantindo a locação e a adequação do espaço no menor tempo do mercado.</p>
             </div>
           </div>
 
