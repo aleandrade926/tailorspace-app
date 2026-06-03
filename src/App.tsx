@@ -8,7 +8,7 @@ import DashboardPage from './pages/Dashboard';
 import BrokerClassPage from './pages/BrokerClassPage';
 import OwnerLandingPage from './pages/OwnerLandingPage';
 import AdvisoryPage from './pages/AdvisoryPage';
-import Infra from './pages/Infra.jsx';
+import Infra from './pages/Infra';
 
 function LandingPage() {
   return (
