@@ -1,0 +1,264 @@
+:root {
+  --infra-bg-base: #121212;
+  --infra-bg-surface: #1e1e1e;
+  --infra-text-main: #f5f5f5;
+  --infra-text-muted: #a0a0a0;
+  --infra-gold: #d4af37;
+  --infra-gold-hover: #b5952f;
+  --infra-green: #2e8b57; /* Verde energia discreto e sério */
+  --infra-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Base Styles, para evitar interferência global usamos o escopo .infra-container */
+.infra-container {
+  font-family: var(--infra-font-sans);
+  background-color: var(--infra-bg-base);
+  color: var(--infra-text-main);
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+/* Typography */
+.infra-container h1, .infra-container h2, .infra-container h3, .infra-container h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.infra-brand {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--infra-gold);
+  margin-bottom: 2rem !important;
+}
+
+.infra-section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem !important;
+  color: var(--infra-text-main);
+  text-align: center;
+}
+
+/* Buttons */
+.infra-btn-primary, .infra-btn-secondary {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.infra-btn-primary {
+  background-color: var(--infra-gold);
+  color: var(--infra-bg-base);
+  border: 1px solid var(--infra-gold);
+}
+
+.infra-btn-primary:hover {
+  background-color: var(--infra-gold-hover);
+  border-color: var(--infra-gold-hover);
+}
+
+.infra-btn-secondary {
+  background-color: transparent;
+  color: var(--infra-text-main);
+  border: 1px solid var(--infra-text-muted);
+}
+
+.infra-btn-secondary:hover {
+  border-color: var(--infra-text-main);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.infra-cta-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* Layout Blocks */
+.infra-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 10%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.infra-hero-content {
+  max-width: 900px;
+}
+
+.infra-hero-title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem !important;
+}
+
+.infra-hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--infra-text-muted);
+  max-width: 700px;
+}
+
+/* Tese */
+.infra-tese {
+  padding: 6rem 10%;
+  background-color: var(--infra-bg-base);
+}
+
+.infra-tese-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.infra-tese-text {
+  font-size: 1.5rem;
+  color: var(--infra-text-muted);
+  line-height: 1.8;
+}
+
+.infra-tese-text strong {
+  color: var(--infra-gold);
+  font-weight: 500;
+}
+
+/* Linhas */
+.infra-linhas {
+  padding: 6rem 10%;
+  background-color: var(--infra-bg-surface);
+}
+
+.infra-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.infra-card {
+  background-color: var(--infra-bg-base);
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.infra-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--infra-green); /* Verde discreto ao interagir */
+}
+
+.infra-card h3 {
+  font-size: 1.25rem;
+  color: var(--infra-gold);
+  margin-bottom: 1rem !important;
+}
+
+.infra-card p {
+  color: var(--infra-text-muted);
+  font-size: 1rem;
+}
+
+/* Engenharia */
+.infra-engenharia {
+  padding: 6rem 10%;
+  background-color: var(--infra-bg-base);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.infra-engenharia-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.infra-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.infra-step {
+  display: flex;
+  align-items: center;
+  background-color: var(--infra-bg-surface);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+}
+
+.infra-step-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--infra-gold);
+  margin-right: 2rem;
+  min-width: 40px;
+}
+
+.infra-step h4 {
+  font-size: 1.2rem;
+  color: var(--infra-text-main);
+}
+
+/* Footer CTA */
+.infra-footer {
+  padding: 6rem 10% 2rem;
+  background-color: var(--infra-bg-surface);
+}
+
+.infra-footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto 6rem;
+}
+
+.infra-footer-block {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--infra-bg-base);
+  border-radius: 8px;
+}
+
+.infra-footer-block h3 {
+  font-size: 1.25rem;
+  margin-bottom: 2rem !important;
+  color: var(--infra-text-muted);
+}
+
+.infra-footer-copy {
+  text-align: center;
+  color: #555;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .infra-hero {
+    padding: 3rem 5%;
+  }
+  .infra-hero-title {
+    font-size: 2.5rem;
+  }
+  .infra-cta-group {
+    flex-direction: column;
+  }
+  .infra-tese, .infra-linhas, .infra-engenharia, .infra-footer {
+    padding: 4rem 5%;
+  }
+  .infra-section-title {
+    font-size: 2rem;
+  }
+}
