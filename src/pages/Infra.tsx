@@ -1,11 +1,43 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { supabase } from '../lib/supabase';
+import { Loader2, CheckCircle2 } from 'lucide-react';
 import '../infra.css';
 
 const InfraPage = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  const formRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // Altera o title para a página infra
     document.title = "TailorSpace Infra | Engenharia Financeira & Geração Distribuída";
   }, []);
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !email) return;
+    setLoading(true);
+    setError(null);
+    
+    const { error: supabaseError } = await supabase
+      .from('leads')
+      .insert([{ name: name.trim(), email: email.trim().toLowerCase(), source: 'infra' }]);
+      
+    setLoading(false);
+    if (supabaseError) {
+      setError('Ocorreu um erro ao enviar seus dados. Tente novamente.');
+      console.error(supabaseError);
+    } else {
+      setSubmitted(true);
+    }
+  };
 
   return (
     <div className="infra-container">
@@ -18,8 +50,8 @@ const InfraPage = () => {
             Originamos, auditamos e estruturamos terrenos, galpões e áreas ociosas em pequenos municípios para implantação de mini usinas, eletropostos, hubs energéticos e infraestrutura descentralizada.
           </p>
           <div className="infra-cta-group">
-            <button className="infra-btn-primary">Fale com a equipe de estruturação</button>
-            <button className="infra-btn-secondary">Cadastrar área para análise</button>
+            <button onClick={scrollToForm} className="infra-btn-primary">Fale com a equipe de estruturação</button>
+            <button onClick={scrollToForm} className="infra-btn-secondary">Cadastrar área para análise</button>
           </div>
         </div>
       </section>
@@ -91,15 +123,48 @@ const InfraPage = () => {
       </section>
 
       {/* Footer / CTA Final */}
-      <footer className="infra-footer">
+      <footer className="infra-footer" ref={formRef}>
         <div className="infra-footer-content">
-          <div className="infra-footer-block">
-            <h3>Para empresas, fundos e operadores</h3>
-            <button className="infra-btn-primary">Fale com a equipe de estruturação</button>
-          </div>
-          <div className="infra-footer-block">
-            <h3>Para corretores, proprietários e parceiros locais</h3>
-            <button className="infra-btn-secondary">Cadastrar área ou tornar-se parceiro</button>
+          <div className="infra-footer-block" style={{ gridColumn: '1 / -1', maxWidth: '600px', margin: '0 auto' }}>
+            <h3 style={{ fontSize: '1.75rem', color: 'var(--infra-gold)', marginBottom: '1rem' }}>Conecte-se com a TailorSpace Infra</h3>
+            <p style={{ color: 'var(--infra-text-muted)', marginBottom: '2rem' }}>Seja você uma empresa buscando estruturar capacidade energética, ou um proprietário/corretor com uma área ociosa com potencial.</p>
+            
+            {!submitted ? (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'left' }}>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--infra-text-main)' }}>Nome ou Empresa</label>
+                  <input 
+                    type="text" 
+                    required 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{ width: '100%', padding: '1rem', borderRadius: '4px', border: '1px solid #333', backgroundColor: '#121212', color: '#fff' }}
+                    placeholder="Seu nome ou empresa"
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--infra-text-main)' }}>E-mail Corporativo</label>
+                  <input 
+                    type="email" 
+                    required 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={{ width: '100%', padding: '1rem', borderRadius: '4px', border: '1px solid #333', backgroundColor: '#121212', color: '#fff' }}
+                    placeholder="email@empresa.com.br"
+                  />
+                </div>
+                {error && <p style={{ color: '#ef4444', fontSize: '0.9rem' }}>{error}</p>}
+                <button type="submit" disabled={loading} className="infra-btn-primary" style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem' }}>
+                  {loading ? <><Loader2 className="animate-spin w-5 h-5" /> Enviando...</> : 'Solicitar Contato Estratégico'}
+                </button>
+              </form>
+            ) : (
+              <div style={{ padding: '2rem', backgroundColor: 'rgba(46, 139, 87, 0.1)', border: '1px solid var(--infra-green)', borderRadius: '8px', textAlign: 'center' }}>
+                <CheckCircle2 style={{ width: '3rem', height: '3rem', color: 'var(--infra-green)', margin: '0 auto 1rem' }} />
+                <h4 style={{ color: '#fff', fontSize: '1.25rem', marginBottom: '0.5rem' }}>Recebemos seu contato!</h4>
+                <p style={{ color: 'var(--infra-text-muted)' }}>Nossa equipe de estruturação analisará seus dados e entrará em contato em breve.</p>
+              </div>
+            )}
           </div>
         </div>
         <div className="infra-footer-copy">
@@ -111,3 +176,4 @@ const InfraPage = () => {
 };
 
 export default InfraPage;
+
