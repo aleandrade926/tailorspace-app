@@ -8,6 +8,7 @@ import DashboardPage from './pages/Dashboard';
 import BrokerClassPage from './pages/BrokerClassPage';
 import OwnerLandingPage from './pages/OwnerLandingPage';
 import AdvisoryPage from './pages/AdvisoryPage';
+import Infra from './pages/Infra.jsx';
 
 function LandingPage() {
   return (
@@ -345,6 +346,7 @@ export default function App() {
         <Route path="/proprietario" element={<OwnerLandingPage />} />
         <Route path="/proprietarios" element={<OwnerLandingPage />} />
         <Route path="/consultoriabts" element={<AdvisoryPage />} />
+        <Route path="/infra" element={<Infra />} />
       </Routes>
       <a 
         href={`https://wa.me/5511993725876?text=${encodeURIComponent('Olá, acessei o portal da TailorSpace. Gostaria de conversar com a equipe estratégica para avaliar as minhas opções e solicitar uma análise do meu caso.')}`} 
