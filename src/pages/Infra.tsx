@@ -302,7 +302,7 @@ const InfraPage = () => {
       <footer className="infra-footer" ref={formRef}>
         <div className="infra-footer-content-custom">
           <div className="infra-form-container">
-            <h3 className="infra-form-main-title">Conecte-se à Operação TailorSpace Infra</h3>
+            <h3 className="infra-form-main-title">Conecte-se com a TailorSpace Infra</h3>
             
             <p className="infra-form-desc">
               Se você é uma empresa buscando estruturar capacidade energética, ou um proprietário/corretor com uma área ociosa com potencial, preencha o formulário para iniciarmos o diagnóstico.
