@@ -2,7 +2,7 @@
   --infra-bg-base: #0a0a0a;
   --infra-bg-surface: #121212;
   --infra-text-main: #f5f5f5;
-  --infra-text-muted: #8e8e8e;
+  --infra-text-muted: #a3a3a3;
   --infra-gold: #c5a059;
   --infra-gold-hover: #b48f48;
   --infra-green: #2e8b57; /* Verde energia discreto e sério */
@@ -20,7 +20,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .infra-container h1, .infra-container h2, .infra-container h3, .infra-container h4 {
@@ -159,13 +159,15 @@
   margin-bottom: 1.5rem !important;
   font-weight: 700;
   letter-spacing: -0.03em;
+  word-break: keep-all;
+  hyphens: none;
 }
 
 .infra-hero-subtitle {
   font-size: 1.2rem;
   color: var(--infra-text-muted);
-  max-width: 620px;
-  line-height: 1.6;
+  max-width: 720px;
+  line-height: 1.7;
 }
 
 /* Hero Image Visual */
@@ -360,17 +362,17 @@
 
 .infra-stat-num {
   display: block;
-  font-size: 3rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--infra-gold);
-  line-height: 1;
-  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
 }
 
 .infra-stat-label {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: var(--infra-text-muted);
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 .infra-arbitragem-img-wrapper {
@@ -441,7 +443,7 @@
 }
 
 .infra-card h3 {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   color: var(--infra-text-main);
   margin-bottom: 1.25rem !important;
   font-weight: 700;
@@ -449,8 +451,8 @@
 
 .infra-card p {
   color: var(--infra-text-muted);
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 /* Engenharia / Steps */
@@ -498,9 +500,9 @@
 }
 
 .infra-step-desc {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--infra-text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* Footer / Formulário Segmentado */
@@ -527,9 +529,9 @@
 
 .infra-form-desc {
   color: var(--infra-text-muted);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 3.5rem;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .infra-form-box {
@@ -673,8 +675,8 @@
 
 .infra-success-box p {
   color: var(--infra-text-muted);
-  font-size: 1.05rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.7;
 }
 
 /* Copy */

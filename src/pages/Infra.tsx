@@ -99,17 +99,17 @@ const InfraPage = () => {
           <div className="infra-hero-content">
             <h1 className="infra-brand">TailorSpace Infra</h1>
             <h2 className="infra-hero-title">
-              Estruturação e originação de ativos de infraestrutura energética off-market.
+              Ativos off-market para infraestrutura energética descentralizada.
             </h2>
             <p className="infra-hero-subtitle">
-              Conectamos o suprimento de áreas estratégicas de baixo custo em pequenos municípios com a demanda corporativa de alta potência para mobilidade, geração e borda.
+              Originamos, qualificamos e estruturamos terrenos, telhados, galpões e áreas subutilizadas para projetos de geração distribuída, cogeração, storage, recarga elétrica e infraestrutura corporativa.
             </p>
             <div className="infra-cta-group">
               <button onClick={() => scrollToForm('demand')} className="infra-btn-primary">
-                Demandas de Potência (B2B)
+                Informar Critérios Técnicos
               </button>
               <button onClick={() => scrollToForm('supply')} className="infra-btn-secondary">
-                Cadastrar Área Operacional
+                Cadastrar Área Disponível
               </button>
             </div>
           </div>
@@ -184,12 +184,12 @@ const InfraPage = () => {
               </div>
               <div className="infra-arbitragem-stats">
                 <div className="infra-stat-card">
-                  <span className="infra-stat-num">90%</span>
-                  <span className="infra-stat-label">Redução no custo do arrendamento de solo</span>
+                  <span className="infra-stat-num">Redução de atrito imobiliário</span>
+                  <span className="infra-stat-label">Áreas fora da disputa dos grandes centros.</span>
                 </div>
                 <div className="infra-stat-card">
-                  <span className="infra-stat-num">100%</span>
-                  <span className="infra-stat-label">Ativos validados juridicamente e prontos para SPE</span>
+                  <span className="infra-stat-num">Originação direcionada</span>
+                  <span className="infra-stat-label">Captação orientada por critérios reais de EPCistas, operadores e investidores.</span>
                 </div>
               </div>
             </div>
@@ -359,12 +359,12 @@ const InfraPage = () => {
                         required 
                         value={powerDemand}
                         onChange={(e) => setPowerDemand(e.target.value)}
-                        placeholder="Ex: 500 kW, 5 MW ou Não sei"
+                        placeholder="Ex: 500 kW, 1 MW, 3 MW, 5 MW"
                       />
                     </div>
 
                     <div className="infra-input-group">
-                      <label>Principal Gargalo Técnico/Logístico</label>
+                      <label>Principal gargalo técnico/regulatório</label>
                       <select 
                         required
                         value={gargalo}
