@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { supabase } from '../lib/supabase';
 import { Loader2, CheckCircle2, MapPin, Zap, TrendingUp, Layers } from 'lucide-react';
 import '../infra.css';
+
+import { supabase } from '../lib/supabase';
 
 const InfraPage = () => {
   // Navigation scrolling
@@ -58,7 +59,6 @@ const InfraPage = () => {
     setLoading(false);
     if (supabaseError) {
       setError('Ocorreu um erro ao enviar seus dados. Tente novamente.');
-      console.error(supabaseError);
     } else {
       setSubmitted(true);
     }
@@ -86,7 +86,6 @@ const InfraPage = () => {
     setLoading(false);
     if (supabaseError) {
       setError('Ocorreu um erro ao enviar seus dados. Tente novamente.');
-      console.error(supabaseError);
     } else {
       setSubmitted(true);
     }
