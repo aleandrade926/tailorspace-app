@@ -102,11 +102,11 @@ const InfraPage = () => {
               Ativos off-market para infraestrutura energética descentralizada.
             </h2>
             <p className="infra-hero-subtitle">
-              Originamos, qualificamos e estruturamos terrenos, telhados, galpões e áreas subutilizadas para projetos de geração distribuída, cogeração, storage, recarga elétrica e infraestrutura corporativa.
+              Originamos, qualificamos e estruturamos terrenos, telhados, galpões e áreas subutilizadas fora dos canais tradicionais para projetos de geração distribuída, cogeração, storage, recarga elétrica e infraestrutura corporativa.
             </p>
             <div className="infra-cta-group">
               <button onClick={() => scrollToForm('demand')} className="infra-btn-primary">
-                Informar Critérios Técnicos
+                Informar Critérios de Originação
               </button>
               <button onClick={() => scrollToForm('supply')} className="infra-btn-secondary">
                 Cadastrar Área Disponível
@@ -135,6 +135,7 @@ const InfraPage = () => {
             <div className="infra-bts-info">
               <div className="infra-bts-badge">CONCEITO OPERACIONAL</div>
               <h3 className="infra-bts-title">Build to Suit de Elétrons</h3>
+              <h4 className="infra-bts-subtitle">Criamos a ponte entre áreas ociosas e projetos corporativos de energia, recarga e infraestrutura descentralizada.</h4>
               <p className="infra-bts-text">
                 Grandes corporações e operadores logísticos enfrentam gargalos de conexão elétrica em áreas metropolitanas densas, onde a malha de distribuição está saturada. A TailorSpace Infra inverte o fluxo tradicional: em vez de esperar anos por subestações da concessionária em capitais, nós originamos, licenciamos e montamos **infraestrutura dedicada sob medida** em localizações periféricas de altíssima viabilidade e custo reduzido.
               </p>
@@ -382,7 +383,7 @@ const InfraPage = () => {
                     {error && <p className="infra-form-error">{error}</p>}
                     
                     <button type="submit" disabled={loading} className="infra-btn-primary infra-btn-submit">
-                      {loading ? <><Loader2 className="animate-spin w-5 h-5" /> Processando...</> : 'Solicitar Análise de Viabilidade (Demand)'}
+                      {loading ? <><Loader2 className="animate-spin w-5 h-5" /> Processando...</> : 'Enviar Critérios para Validação'}
                     </button>
                   </form>
                 )}
@@ -465,7 +466,7 @@ const InfraPage = () => {
                     {error && <p className="infra-form-error">{error}</p>}
                     
                     <button type="submit" disabled={loading} className="infra-btn-primary infra-btn-submit">
-                      {loading ? <><Loader2 className="animate-spin w-5 h-5" /> Processando...</> : 'Enviar Ativo para Pré-Auditoria (Supply)'}
+                      {loading ? <><Loader2 className="animate-spin w-5 h-5" /> Processando...</> : 'Solicitar Validação Inicial'}
                     </button>
                   </form>
                 )}
