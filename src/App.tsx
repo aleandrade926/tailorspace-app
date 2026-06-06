@@ -126,6 +126,19 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* Bloco Discreto Tributário */}
+      <section className="py-12 bg-dark-900">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="glass p-8 md:p-10 rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent flex flex-col items-center text-center">
+            <h3 className="text-brand-500 font-bold text-xl mb-4">Fit-out, mobília e eficiência fiscal</h3>
+            <p className="text-slate-300 leading-relaxed mb-6">
+              A TailorSpace não olha apenas para ocupação. Em operações com mobília, retrofit e adaptação do imóvel, a estrutura contratual e documental pode influenciar o tratamento fiscal dos ativos, despesas, depreciação e aproveitamento econômico da operação.
+            </p>
+            <span className="text-sm text-slate-500 italic">"Imóvel sob medida, operação estruturada e inteligência fiscal desde a origem."</span>
+          </div>
+        </div>
+      </section>
+
       {/* Features */}
       <section id="how-it-works" className="py-32">
         <div className="max-w-7xl mx-auto px-6">
